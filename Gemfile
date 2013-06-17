@@ -30,6 +30,8 @@ gem 'rspec-rails'
 gem 'wkhtmltopdf'
 gem 'haml-rails'
 
+  gem 'capybara'
+
 group :test do
   gem 'cucumber-rails'
   gem 'cucumber-rails-training-wheels'
