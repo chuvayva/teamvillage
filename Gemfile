@@ -30,13 +30,14 @@ gem 'rspec-rails'
 gem 'wkhtmltopdf'
 gem 'haml-rails'
 
-  gem 'capybara'
+gem 'capybara'
 
 group :test do
   gem 'cucumber-rails'
   gem 'cucumber-rails-training-wheels'
   gem 'rspec-rails'
   gem 'simplecov'
+  gem 'database_cleaner'
 end
 
 # To use ActiveModel has_secure_password
