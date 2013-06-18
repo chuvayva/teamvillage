@@ -7,9 +7,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-<%= yield %>
+	
+	<div id="user_nav">
+		<% if user_signed_in? %>
+			 Signed in as <%= current_user.email %>.
+			 <%= link_to 'Signed out', destroy_user_session_path %>
+		<% else %>
+			<%= link_to 'Signed in', new_user_session_path%> or <%= link_to 'Signed up', new_user_registration_path %>.
+		<% end %>
+	</div>
+
+	<p class="notice"><%= notice %></p>
+	<p class="alert"><%= alert %></p>
+	<%= yield %>
 
 </body>
 </html>
