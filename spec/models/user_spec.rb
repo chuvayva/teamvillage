@@ -1,11 +1,5 @@
 require 'spec_helper'
 
-# Куда это засунуть
-RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
-end
-####
-
 describe User do
 
   describe '#role?' do
