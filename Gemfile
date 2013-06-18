@@ -33,12 +33,14 @@ gem 'haml-rails'
 gem 'capybara'
 
 group :test do
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', require: false
   gem 'cucumber-rails-training-wheels'
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'database_cleaner'
 end
+
+gem 'factory_girl_rails', :group => [:development, :test]
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -1,5 +1,13 @@
 require 'spec_helper'
 
 describe User do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  describe '#role?' do
+
+  	it 'should be admin' 
+
+  	it 'should be manager'
+
+  	it 'should be developer'
+  end
 end

@@ -15,5 +15,5 @@ Scenario: admin sign in
 	When I fill in "Email" with "mail_1@m.ru"
 	And fill in "Password" with "pass1"
 	And press "Sign in"
-	Then I should be at the TeamVillage home page
-	And has "admin" permission
+	Then I should see "Signed in successfully"
+	And should has "admin" role
