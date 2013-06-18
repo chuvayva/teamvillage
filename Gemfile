@@ -21,7 +21,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'devise'
+gem 'devise', '1.4.7'
 gem 'cancan'
 gem 'draper'
 gem 'resque'

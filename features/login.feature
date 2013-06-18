@@ -5,6 +5,6 @@ Feature: login with according rights of role
 
 Background: 
 
-	Given user 'Fedor' as :developer
-	And user 'Alex' as :manager
-	And user 'Max' as :admin
+	Given user 'Fedor' as 'developer'
+	And user 'Alex' as 'manager'
+	And user 'Max' as 'admin'
