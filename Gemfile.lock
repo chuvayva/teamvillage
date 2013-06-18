@@ -194,7 +194,7 @@ DEPENDENCIES
   cucumber-rails
   cucumber-rails-training-wheels
   database_cleaner
-  devise (= 1.4.7)
+  devise
   draper
   haml-rails
   jquery-rails
