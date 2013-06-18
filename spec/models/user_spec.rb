@@ -5,9 +5,9 @@ describe User do
   describe '#role?' do
 
   	before :all do
-  		create(:user, name: 'Fedor', roles: ['developer'])
-  		create(:user, name: 'Alex', roles: ['manager'])
-  		create(:user, name: 'Max', roles: ['admin'])
+  		create(:developer, name: 'Fedor')
+  		create(:manager, name: 'Alex')
+  		create(:admin, name: 'Max')
   	end
 
   	it 'should be admin' do
@@ -20,10 +20,6 @@ describe User do
 
   	it 'should be developer' do
   		assert User.find_by_name('Fedor').role? :developer
-  	end
-
-  	after :all do
-  		# User.delete_all
   	end
 
   end
