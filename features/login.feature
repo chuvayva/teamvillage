@@ -5,6 +5,15 @@ Feature: login with according rights of role
 
 Background: 
 
-	Given user 'Fedor' as 'developer'
-	And user 'Alex' as 'manager'
-	And user 'Max' as 'admin'
+	Given user 'mail_1@m.ru' with 'admin' role
+	And user 'mail_2@m.ru' with 'manager' role
+	And user 'mail_3@m.ru' with 'developer' role
+
+	And I am on the sign in page
+
+Scenario: admin sign in
+	When I fill in 'Email' with 'mail_1@m.ru'
+	And fill in 'Password' with 'pass1'
+	And press 'Sign in'
+	Then I should be at the TeamVillage home page
+	And has 'admin' permission
