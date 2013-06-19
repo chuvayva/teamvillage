@@ -9,7 +9,7 @@ Background:
 	  | Fedor	| email_1@bk.ru		| 123456		|
 	  | Max		| email_2@bk.ru		| 123456		|
 
-	And the following projects exists:
+	And the following projects exist:
 		|	name		| owner |
 		|	Mars		| Fedor |
 
