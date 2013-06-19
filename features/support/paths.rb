@@ -18,6 +18,12 @@ module NavigationHelpers
       
     when /^the sign in page$/
       new_user_session_path
+ 
+    when /^the sign up page$/
+      new_user_registration_path
+
+    when /^the sign out page$/
+      destroy_user_session_path
 
 
     # Add more mappings here.
