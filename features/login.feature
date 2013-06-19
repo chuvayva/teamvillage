@@ -1,19 +1,20 @@
-Feature: login with according rights of role
+Feature: login
 
 	As a user of one of three role (admin, manager and developer)
 	So I can login into the site
 
 Background: 
 
-	Given user "mail_1@m.ru" with "admin" role
-	And user "mail_2@m.ru" with "manager" role
-	And user "mail_3@m.ru" with "developer" role
-
+	# Given user with "admin" role
+	# And user with "manager" role
+	# And user with "developer" role
+  Given the following users exist:
+  | email 				| password |
+  | email_1@bk.ru | 123456 	 |
 	And I am on the sign in page
 
 Scenario: admin sign in
-	When I fill in "Email" with "mail_1@m.ru"
-	And fill in "Password" with "pass1"
+	When I fill in "Email" with "email_1@bk.ru"
+	And fill in "Password" with "123456"
 	And press "Sign in"
 	Then I should see "Signed in successfully"
-	And should has "admin" role
