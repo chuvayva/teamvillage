@@ -1,6 +1,6 @@
 Feature: login
 
-	As a user of one of three role (admin, manager and developer)
+	As a user
 	So I can login into the site
 
 Background: 

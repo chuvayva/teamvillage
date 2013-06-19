@@ -11,7 +11,7 @@ Background:
 
 	And the following projects exists:
 		|	name		| owner |
-		|	Mexico	| Fedor |
+		|	Mars		| Fedor |
 
 Scenario: create project
   Given I am sign in as "Fedor"
@@ -26,14 +26,14 @@ Scenario: create project
 
 Scenario: add task to project
   Given I am sign in as "Fedor"
-  And I am on the "Mexico" project page
+  And I am on the "Mars" project page
   When I press "Add task"
   Then should see "Create task for"
-  When I fill "Name" with "Rest"
+  When I fill "Name" with "Create DB script"
   And fill "Executer" with "Max"
   And press "Add"
-  Then I should be on "Mexico" project page
-  And should see "Rest"
+  Then I should be on "Mars" project page
+  And should see "Create DB script"
 
 
 
