@@ -26,6 +26,13 @@ module NavigationHelpers
       destroy_user_session_path
 
 
+    when /^create project page$/
+      new_project_path
+
+    when /^the "([^"]+)" project page$/
+      project_path Project.find_by_name($1)
+
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

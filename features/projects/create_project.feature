@@ -17,23 +17,23 @@ Scenario: create project
   Given I am sign in as "Fedor" with password "123456"
   And I am on the home page
   When I follow "New project"
-  Then should see "New project creation"
-  When I fill "Project name" with "Team Village"
-  And press "Create"
+  Then should be on create project page
+  When I fill in "Name" with "Team Village"
+  And press "Save"
   Then I should be on the "Team Village" project page
   And should see "Team Village"
 
 
-# Scenario: add task to project
-#   Given I am sign in as "Fedor" with password "123456"
-#   And I am on the "Mars" project page
-#   When I press "Add task"
-#   Then should see "Create task for"
-#   When I fill "Name" with "Create DB script"
-#   And fill "Executer" with "Max"
-#   And press "Add"
-#   Then I should be on "Mars" project page
-#   And should see "Create DB script"
+Scenario: add task to project
+  Given I am sign in as "Fedor" with password "123456"
+  And I am on the "Mars" project page
+  When I press "Add task"
+  Then should see "Create task for"
+  When I fill "Name" with "Create DB script"
+  And fill "Executer" with "Max"
+  And press "Add"
+  Then I should be on "Mars" project page
+  And should see "Create DB script"
 
 
 

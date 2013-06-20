@@ -1,0 +1,12 @@
+%h1 
+  User: 
+  = current_user.name
+
+%p
+  %b Email:
+  = current_user.email
+
+/ tasks
+
+= link_to 'New project', new_project_path
+
