@@ -1,9 +1,12 @@
 Teamvillage::Application.routes.draw do
-  resources :tasks
+  get "users/show"
 
+  resources :tasks
 
   resources :projects
 
+   #resources :users, :only => [:show]
+  #match 'users/:id' => 'user#show'
 
   devise_for :users
 
@@ -56,8 +59,8 @@ Teamvillage::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-   root :to => 'home#index'
-
+   root :to => 'users#show'
+   #match '/' => redirect('/users/user_tasks')
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
