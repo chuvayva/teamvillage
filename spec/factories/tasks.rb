@@ -3,9 +3,9 @@
 FactoryGirl.define do
   factory :task do
     name "MyString"
-    user ""
     status "MyString"
-    persentage 1
-    project ""
+    persentage 99
+    association :executer, factory: :user
+    project
   end
 end

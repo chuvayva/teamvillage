@@ -79,6 +79,13 @@ describe TasksController do
         post :create, {:task => valid_attributes}, valid_session
         response.should redirect_to(Task.last)
       end
+
+      it "redirects to the project page" do
+        Task.any_instance.stub(:project).and_return create(:project)
+        
+        post :create, {:task => attributes_for(:task)}, valid_session
+        response.should redirect_to(Project.last)
+      end
     end
 
     describe "with invalid params" do

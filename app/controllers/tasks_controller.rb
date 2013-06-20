@@ -26,6 +26,8 @@ class TasksController < ApplicationController
   def new
     @task = Task.new
     @task.project = Project.find_by_id params[:project_id]
+    @all_users = User.all;
+    @all_projects = Project.all;
       
     respond_to do |format|
       format.html # new.html.erb

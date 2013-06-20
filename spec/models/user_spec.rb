@@ -23,4 +23,11 @@ describe User do
   	end
 
   end
+
+  describe '#to_s' do
+    it 'should return name' do
+      u = User.new(:name => 'super name')
+      u.to_s.should == 'super name'
+    end
+  end
 end
