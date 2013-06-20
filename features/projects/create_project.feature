@@ -30,9 +30,10 @@ Scenario: add task to project
   When I follow "Add Task"
   Then should see "New task"
   When I fill in "Name" with "Create DB script"
-  And fill in "Executer" with "Max"
+  When I fill in "Persentage" with "3"
+  And select "Max" from "Executer"
   And press "Save"
-  Then I should be on "Mars" project page
+  Then I should be on the "Mars" project page
   And should see "Create DB script"
 
 

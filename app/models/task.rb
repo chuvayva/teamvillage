@@ -4,5 +4,9 @@ class Task < ActiveRecord::Base
 
 	validates_inclusion_of :persentage, :in => 0..100
 
-  attr_accessible :name, :persentage, :project, :status, :executer
+  attr_accessible :name, :persentage, :project_id, :executer_id, :status, :executer
+
+  def to_s
+  	name
+  end
 end

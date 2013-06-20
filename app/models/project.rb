@@ -3,4 +3,9 @@ class Project < ActiveRecord::Base
 	belongs_to :owner, class_name: 'User'
 	
   attr_accessible :name
+
+
+  def to_s
+  	name || email
+  end
 end

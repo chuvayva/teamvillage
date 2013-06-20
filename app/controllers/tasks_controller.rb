@@ -25,7 +25,7 @@ class TasksController < ApplicationController
   # GET /tasks/new.json
   def new
     @task = Task.new
-    # @project = Project.find(params[:project_id])  
+    @task.project = Project.find_by_id params[:project_id]
       
     respond_to do |format|
       format.html # new.html.erb
@@ -41,12 +41,19 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
-    puts params[:task]
     @task = Task.new(params[:task])
     
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
+        format.html do 
+
+          if @task.project
+            redirect_to @task.project, notice: 'Task was successfully created.' 
+          else
+            redirect_to @task, notice: 'Task was successfully created.' 
+          end
+        end
+
         format.json { render json: @task, status: :created, location: @task }
       else
         format.html { render action: "new" }
