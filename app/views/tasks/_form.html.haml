@@ -11,7 +11,7 @@
     = f.text_field :name
   .field
     = f.label :executer
-    = f.text_field :executer
+    = f.collection_select(:executer, User.all, :id, :name, :prompt => '') 
   .field
     = f.label :status
     = f.text_field :status
@@ -20,6 +20,10 @@
     = f.number_field :persentage
   .field
     = f.label :project
-    = f.text_field :project
+    = f.collection_select(:project, Project.all, :id, :name, :prompt => 'Please select project') 
+  /    = f.label :project
+  /    = f.text_field :project
+    
+
   .actions
     = f.submit 'Save'

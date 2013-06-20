@@ -16,7 +16,7 @@ Background:
 Scenario: create project
   Given I am sign in as "Fedor" with password "123456"
   And I am on the home page
-  When I follow "New project"
+  When I follow "New Project"
   Then should be on create project page
   When I fill in "Name" with "Team Village"
   And press "Save"
@@ -27,11 +27,11 @@ Scenario: create project
 Scenario: add task to project
   Given I am sign in as "Fedor" with password "123456"
   And I am on the "Mars" project page
-  When I press "Add task"
-  Then should see "Create task for"
-  When I fill "Name" with "Create DB script"
-  And fill "Executer" with "Max"
-  And press "Add"
+  When I follow "Add Task"
+  Then should see "New task"
+  When I fill in "Name" with "Create DB script"
+  And fill in "Executer" with "Max"
+  And press "Save"
   Then I should be on "Mars" project page
   And should see "Create DB script"
 

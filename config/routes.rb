@@ -1,14 +1,18 @@
 Teamvillage::Application.routes.draw do
-  get "users/show"
+
+  devise_for :users
 
   resources :tasks
 
   resources :projects
 
+  # resources :projects do
+  #   resources :tasks
+  # end
+
    #resources :users, :only => [:show]
   #match 'users/:id' => 'user#show'
 
-  devise_for :users
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
