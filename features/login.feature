@@ -15,7 +15,6 @@ Scenario: user sign up
 	And fill in "Password" with "123456"
 	And fill in "Password confirmation" with "123456"
 	And press "Sign up"
-	Then I should be on the home page
 	And should see "Welcome! You have signed up successfully"
 
 

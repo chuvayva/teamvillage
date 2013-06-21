@@ -32,6 +32,11 @@ module NavigationHelpers
     when /^the "([^"]+)" project page$/
       project_path Project.find_by_name($1)
 
+    when /^edit "([^"]+)" task page$/
+      edit_task_path Task.find_by_name($1)
+
+    when /^the "([^"]+)" task page$/
+      task_path Task.find_by_name($1)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

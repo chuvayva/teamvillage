@@ -14,18 +14,17 @@ Background:
 		|	name		| owner |
 		|	Mars		| Fedor |
 
-	And the following tasks exists:
-		|	name							| executer | persentage |
-		|	Create DB script	| Fedor 	 | 20 				|
+	And the following tasks exist:
+		|	name							| project 	| persentage |
+		|	Create DB script	| Mars		  | 20 				 |
 
 
 Scenario: edit task info
-	Given I am sign in as "Fedor"
+	Given I am sign in as "Fedor" with password "123456"
 	And I am on the "Mars" project page
-	When press edit button on "Create DB script" task
-	Then I should be on edit task page 
-	When I fill "Name" with "Download DB script"
-	And I fill "Persentage" with "50"
+	When follow "Edit" button on "Create DB script" task
+	Then I should be on edit "Create DB script" task page 
+	When I fill in "Name" with "Download DB script"
+	And I fill in "Persentage" with "50"
 	And press "Save"
-	Then I should bу on the "Mars" project page
-	And should see "task successfully edited"
+	And should see "Task was successfully updated"
