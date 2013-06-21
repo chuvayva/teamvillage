@@ -6,8 +6,8 @@ Background:
 
 	Given the following users exist:
 	  | name	| email						| password	|
-	  | Fedor	| email_1@bk.ru		| 123456		|
-	  | Max		| email_2@bk.ru		| 123456		|
+	  | Fedor	| baikonur_1@bk.ru		| 123456		|
+	  | Max		| baikonur_2@bk.ru		| 123456		|
 
 	And the following projects exist:
 		|	name		| owner |
@@ -29,12 +29,12 @@ Scenario: add task to project
   And I am on the "Mars" project page
   When I follow "Add Task"
   Then should see "New task"
-  When I fill in "Name" with "Create DB script"
+  When I fill in "Name" with "Count satellites"
   When I fill in "Persentage" with "3"
   And select "Max" from "Executer"
   And press "Save"
   Then I should be on the "Mars" project page
-  And should see "Create DB script"
+  And should see "Count satellites"
 
 
 

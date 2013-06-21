@@ -1,3 +1,8 @@
+%p.b-filter-project
+  = label :filter, :project_id
+  = collection_select(:filter, :project_id, current_user.projects, :id, :name, include_blank: 'All projects')
+
+
 %h1 
   User: 
   = current_user.name
@@ -6,7 +11,7 @@
   %b Email:
   = current_user.email
 
-/ tasks
+= render partial: 'tasks/tasks_table', locals: {tasks: @all_user_tasks}
 
 = link_to 'New Project', new_project_path(:owner_id=>current_user)
 \|

@@ -252,3 +252,15 @@ end
 Then /^show me the page$/ do
   save_and_open_page
 end
+
+Then (/^should see (\d+) rows in "([^"]*)" table$/) do |count, selector|
+  within "#{selector} tbody" do
+    # wait_until do
+      all("tr").count == count.to_i
+    # end
+  end
+end
+
+# Then(/^should see (\d+) rows in "(.*?)" table$/) do |arg1, arg2|
+#   pending # express the regexp above with the code you wish you had
+# end
