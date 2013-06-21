@@ -1,26 +1,6 @@
 %h1 Listing tasks
 
-%table
-  %tr
-    %th Name
-    %th User
-    %th Status
-    %th Persentage
-    %th Project
-    %th
-    %th
-    %th
-
-  - @tasks.each do |task|
-    %tr
-      %td= task.name
-      %td= task.executer
-      %td= task.status
-      %td= task.persentage
-      %td= task.project
-      %td= link_to 'Show', task
-      %td= link_to 'Edit', edit_task_path(task)
-      %td= link_to 'Destroy', task, :method => :delete, :data => { :confirm => 'Are you sure?' }
+= render partial: 'tasks/tasks_table',locals: {tasks: @tasks}
 
 %br
 
