@@ -1,6 +1,9 @@
 %p
   %b Name:
   = @project.name
+%p
+  %b Owner:
+  = @project.owner
 
 = render partial: 'tasks/tasks_table',locals: {tasks: @project.tasks}
 
