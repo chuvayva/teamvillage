@@ -1,9 +1,8 @@
 require 'spec_helper'
 
 describe UsersController do
-	before :all do
-		#UsersController.any_instance.stub!(:current_user).and_return build(:user)
-	end
+before { controller.stub(:authenticate_user!).and_return true }
+	
 	describe '#user_tasks' do
 		it 'should call User#executing_tasks' do
 			user = build :user
