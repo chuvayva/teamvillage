@@ -13,6 +13,14 @@ class User < ActiveRecord::Base
 
   ROLES = %w[admin manager developer]
 
+
+  def executing_tasks(project = nil)
+    tasks = Task.where('executer_id = :user', user: self)
+    tasks = tasks.where('project_id = :project',project: project) if project
+
+    tasks
+  end
+
   def roles=(roles)
   	self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
 	end

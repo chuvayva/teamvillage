@@ -5,6 +5,6 @@ class UsersController < ApplicationController
   end
 
   def user_tasks
-  	@all_user_tasks = Task.where("executer_id = ?", current_user)
+  	@viewed_tasks = current_user.executing_tasks
   end
 end

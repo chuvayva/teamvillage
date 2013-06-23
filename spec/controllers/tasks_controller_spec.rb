@@ -32,6 +32,7 @@ describe TasksController do
 
   describe "GET index" do
     it "assigns all tasks as @tasks" do
+      Task.delete_all
       task = Task.create! valid_attributes
       get :index, {}, valid_session
       assigns(:tasks).should eq([task])

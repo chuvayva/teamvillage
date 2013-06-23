@@ -1,33 +1,46 @@
 require 'spec_helper'
 
 describe User do
-
+  
   describe '#role?' do
 
-  	before :all do
-  		create(:developer, name: 'Fedor')
-  		create(:manager, name: 'Alex')
-  		create(:admin, name: 'Max')
-  	end
+    context 'when user is admin' do
+      subject { build :admin }
 
-  	it 'should be admin' do
-  		assert User.find_by_name('Max').role? :admin
-  	end
-
-  	it 'should be manager' do
-  		assert User.find_by_name('Alex').role? :manager
-  	end
-
-  	it 'should be developer' do
-  		assert User.find_by_name('Fedor').role? :developer
-  	end
-
+    	it { should be_role(:admin) }
+    end
   end
 
   describe '#to_s' do
-    it 'should return name' do
-      u = User.new(:name => 'super name')
-      u.to_s.should == 'super name'
+
+    context 'when name \'super name\'' do
+      subject { build(:user, :name => 'super name').to_s }
+      it {should == 'super name'}
+    end
+  end
+
+  describe '#executing_tasks' do
+    before :all do
+      @dev = create :developer
+      @project1 = create :project
+      project2 = create :project
+      
+      create(:task, project: @project1, executer: @dev) 
+      create(:task, project: project2, executer: @dev) 
+    end
+
+    context 'project is not given' do
+      subject { @dev.executing_tasks }
+      it 'results count == 2' do
+       subject.count.should == 2
+      end
+    end
+
+    context 'project is given' do
+      subject { @dev.executing_tasks(@project1) }
+      it 'results count == 1' do
+        subject.count.should == 1
+      end
     end
   end
 end
