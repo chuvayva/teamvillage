@@ -17,7 +17,7 @@
   %b Description
   %br
     = @task.description
-
-= link_to 'Edit', edit_task_path(@task)
-\|
+- if can? :update, @task
+  = link_to 'Edit', edit_task_path(@task)
+  \|
 = link_to 'All Tasks', tasks_path

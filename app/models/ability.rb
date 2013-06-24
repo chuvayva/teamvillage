@@ -5,17 +5,17 @@ class Ability
 		user ||= User.new
 
 		can [:update, :destroy], Project do |project|
-			project.owner == user
+			user.owner_of?(project)
 		end
 
 		can [:close, :destroy], Task do |task|
-			task.project.try(:owner) == user
+			user.owner_of?(task.project)
 		end
 
 		can :update, Task do |task|
-			task.executer == nil ||
-			task.executer == user ||
-			task.project.owner == user
+			task.executer == nil or
+			user.executer_of?(task) or
+			user.owner_of?(task.project)
 		end
 	end
 end

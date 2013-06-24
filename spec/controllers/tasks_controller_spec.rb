@@ -78,8 +78,11 @@ before { controller.stub(:authenticate_user!).and_return true }
       end
 
       it "redirects to the created task" do
+        before = Task.all
         post :create, {:task => valid_attributes}, valid_session
-        response.should redirect_to(Task.last)
+        after = Task.all
+        last = (after - before).first
+        response.should redirect_to(last)
       end
 
       it "redirects to the project page" do

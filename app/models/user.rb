@@ -33,6 +33,14 @@ class User < ActiveRecord::Base
 		roles.include? role.to_s
 	end
 
+  def owner_of?(project)
+    project.try(:owner) == self
+  end
+
+  def executer_of?(task)
+    task.try(:executer) == self
+  end
+
   def to_s
     name
   end
