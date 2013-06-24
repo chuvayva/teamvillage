@@ -27,6 +27,10 @@ class Task < ActiveRecord::Base
     statuses
   end
 
+  def closed?
+    self.status == :Closed
+  end
+
   def close
     self.status = :Closed
     self.persentage = 100

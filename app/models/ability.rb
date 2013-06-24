@@ -7,5 +7,9 @@ class Ability
 		can [:update, :destroy], Project do |project|
 			project.owner == user
 		end
+
+		can :close, Task do |task|
+			(task.project != nil && task.project.owner == user)
+		end
 	end
 end
