@@ -94,6 +94,22 @@ class TasksController < ApplicationController
     end
   end
 
+  def close
+    @task = Task.find(params[:id])
+    @task.close
+    
+    respond_to do |format|
+      if @task.save
+        format.html { redirect_to @task, notice: 'Task was successfully closed.' }
+        format.json { head :no_content }
+      else
+        init_form_collections_for(@task)
+        format.html { render action: "edit" }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def init_form_collections_for(task)
     @all_users = User.all;
     @all_projects = Project.all;
