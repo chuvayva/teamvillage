@@ -11,8 +11,12 @@
     %tr
       %td= project.name
       %td= link_to 'Show', project
-      %td= link_to 'Edit', edit_project_path(project)
-      %td= link_to 'Destroy', project, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td
+        - if can? :update, project
+          = link_to 'Edit', edit_project_path(project)
+      %td
+        - if can? :destroy, project
+          = link_to 'Destroy', project, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 

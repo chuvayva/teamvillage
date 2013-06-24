@@ -26,8 +26,7 @@ class TasksController < ApplicationController
   def new
     @task = Task.new
     @task.project = Project.find_by_id params[:project_id]
-    @all_users = User.all;
-    @all_projects = Project.all;
+    init_form_collections_for(@task)
       
     respond_to do |format|
       format.html # new.html.erb
@@ -38,8 +37,7 @@ class TasksController < ApplicationController
   # GET /tasks/1/edit
   def edit
     @task = Task.find(params[:id])
-    @all_users = User.all;
-    @all_projects = Project.all;
+    init_form_collections_for(@task)
   end
 
   # POST /tasks
@@ -60,6 +58,7 @@ class TasksController < ApplicationController
 
         format.json { render json: @task, status: :created, location: @task }
       else
+        init_form_collections_for(@task)
         format.html { render action: "new" }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
@@ -76,6 +75,7 @@ class TasksController < ApplicationController
         format.html { redirect_to @task, notice: 'Task was successfully updated.' }
         format.json { head :no_content }
       else
+        init_form_collections_for(@task)
         format.html { render action: "edit" }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
@@ -92,5 +92,30 @@ class TasksController < ApplicationController
       format.html { redirect_to tasks_url }
       format.json { head :no_content }
     end
+  end
+
+  def close
+    @task = Task.find(params[:id])
+    @task.close
+    
+    respond_to do |format|
+      if @task.save
+        format.html { redirect_to @task, notice: 'Task was successfully closed.' }
+        format.json { head :no_content }
+      else
+        init_form_collections_for(@task)
+        format.html { render action: "edit" }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  private
+
+  def init_form_collections_for(task)
+    @all_users = User.all;
+    @all_projects = Project.all;
+    @all_statuses = Task::STATUS.keys
+    @all_statuses.delete :Closed
   end
 end

@@ -1,0 +1,5 @@
+-if task.closed?
+  %b
+    = form.label task.status
+-else
+  = form.select :status, all_statuses
