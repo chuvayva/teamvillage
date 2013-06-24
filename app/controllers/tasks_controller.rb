@@ -114,5 +114,6 @@ class TasksController < ApplicationController
     @all_users = User.all;
     @all_projects = Project.all;
     @all_statuses = task.statuses_for current_user
+    @all_statuses.delete :Closed
   end
 end
