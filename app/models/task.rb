@@ -6,6 +6,27 @@ class Task < ActiveRecord::Base
 
   attr_accessible :name, :persentage, :project_id, :executer_id, :status, :executer
 
+
+  STATUS = {:New => 0, :Assigned => 1, :'In progress'=> 2, :Finished => 3, :Closed => 4}
+
+  def status
+    STATUS.key(read_attribute(:status))
+  end
+ 
+  def status=(s)
+    write_attribute(:status, STATUS[s.to_sym])
+  end
+
+  def statuses_for(user)
+    statuses = Task::STATUS.keys 
+    if project == nil
+        statuses.delete(:Closed)
+    elsif project.owner != user      
+        statuses.delete(:Closed)
+    end 
+    statuses
+  end
+
   def to_s
   	name
   end

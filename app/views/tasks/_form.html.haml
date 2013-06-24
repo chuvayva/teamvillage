@@ -14,7 +14,7 @@
     = f.collection_select(:executer_id, @all_users, :id, :name, :prompt => '') 
   .field
     = f.label :status
-    = f.text_field :status
+    = f.select :status, @all_statuses
   .field
     = f.label :persentage
     = f.number_field :persentage
