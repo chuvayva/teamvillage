@@ -10,18 +10,22 @@
     = f.label :name
     = f.text_field :name
   .field
+    = f.label :project_id
+    = f.collection_select(:project_id, @all_projects, :id, :name, :prompt => 'Please select project') 
+  .field
     = f.label :executer_id
     = f.collection_select(:executer_id, @all_users, :id, :name, :prompt => '') 
+  .field
+    = f.label :status
+    = render partial: 'tasks/status_field', locals: {form: f, task: @task, all_statuses: @all_statuses}
   .field
     = f.label :persentage
     = f.number_field :persentage
   .field
-    = f.label :project_id
-    = f.collection_select(:project_id, @all_projects, :id, :name, :prompt => 'Please select project') 
-  .field
-    = f.label :status
-    = render partial: 'tasks/status_field', locals: {form: f, task: @task, all_statuses: @all_statuses}
-    
+    = f.label :description
+    %br
+    = f.text_area :description, size: '25x5'
+   
 
   .actions
     = f.submit 'Save'

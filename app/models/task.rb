@@ -6,7 +6,7 @@ class Task < ActiveRecord::Base
 
 	validates_inclusion_of :persentage, :in => 0..100
 
-  attr_accessible :name, :persentage, :project_id, :executer_id, :status, :executer
+  attr_accessible :name, :persentage, :project_id, :executer_id, :status, :executer, :description
 
 
   STATUS = {:New => 0, :Assigned => 1, :'In progress'=> 2, :Finished => 3, :Closed => 4}
