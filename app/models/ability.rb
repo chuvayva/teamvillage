@@ -8,8 +8,14 @@ class Ability
 			project.owner == user
 		end
 
-		can :close, Task do |task|
-			(task.project != nil && task.project.owner == user)
+		can [:close, :destroy], Task do |task|
+			task.project.try(:owner) == user
+		end
+
+		can :update, Task do |task|
+			task.executer == nil ||
+			task.executer == user ||
+			task.project.owner == user
 		end
 	end
 end

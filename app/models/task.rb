@@ -2,6 +2,8 @@ class Task < ActiveRecord::Base
 	belongs_to :executer, class_name: 'User'
 	belongs_to :project
 
+  default_scope order('status')
+
 	validates_inclusion_of :persentage, :in => 0..100
 
   attr_accessible :name, :persentage, :project_id, :executer_id, :status, :executer
@@ -17,6 +19,7 @@ class Task < ActiveRecord::Base
     write_attribute(:status, STATUS[s.to_sym])
   end
 
+  
   def closed?
     self.status == :Closed
   end

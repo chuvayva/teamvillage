@@ -110,6 +110,8 @@ class TasksController < ApplicationController
     end
   end
 
+  private
+
   def init_form_collections_for(task)
     @all_users = User.all;
     @all_projects = Project.all;
