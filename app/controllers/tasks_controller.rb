@@ -37,6 +37,7 @@ class TasksController < ApplicationController
   # GET /tasks/1/edit
   def edit
     @task = Task.find(params[:id])
+    authorize! :update, @task
     init_form_collections_for(@task)
   end
 
@@ -69,6 +70,7 @@ class TasksController < ApplicationController
   # PUT /tasks/1.json
   def update
     @task = Task.find(params[:id])
+    authorize! :update, @task
 
     respond_to do |format|
       if @task.update_attributes(params[:task])
@@ -86,6 +88,8 @@ class TasksController < ApplicationController
   # DELETE /tasks/1.json
   def destroy
     @task = Task.find(params[:id])
+    authorize! :destroy, @task
+
     @task.destroy
 
     respond_to do |format|
@@ -96,6 +100,8 @@ class TasksController < ApplicationController
 
   def close
     @task = Task.find(params[:id])
+    authorize! :close, @task
+
     @task.close
     
     respond_to do |format|

@@ -20,6 +20,7 @@ require 'spec_helper'
 
 describe TasksController do
 before { controller.stub(:authenticate_user!).and_return true }
+before { controller.stub(:authorize!).and_return true }
 
   # This should return the minimal set of attributes required to create a valid
   # Task. As you add validations to Task, be sure to

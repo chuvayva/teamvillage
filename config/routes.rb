@@ -3,7 +3,7 @@ Teamvillage::Application.routes.draw do
   devise_for :users
 
   resources :tasks do
-    get 'close', :on => :member, :as => 'close'
+    put 'close', :on => :member, :as => 'close'
   end
 
   resources :projects
