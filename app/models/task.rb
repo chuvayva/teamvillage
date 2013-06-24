@@ -17,16 +17,6 @@ class Task < ActiveRecord::Base
     write_attribute(:status, STATUS[s.to_sym])
   end
 
-  def statuses_for(user)
-    statuses = Task::STATUS.keys 
-    if project == nil
-        statuses.delete(:Closed)
-    elsif project.owner != user      
-        statuses.delete(:Closed)
-    end 
-    statuses
-  end
-
   def closed?
     self.status == :Closed
   end

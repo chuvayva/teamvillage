@@ -113,7 +113,7 @@ class TasksController < ApplicationController
   def init_form_collections_for(task)
     @all_users = User.all;
     @all_projects = Project.all;
-    @all_statuses = task.statuses_for current_user
+    @all_statuses = Task::STATUS.keys
     @all_statuses.delete :Closed
   end
 end
