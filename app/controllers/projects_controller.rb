@@ -37,7 +37,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   def edit
     @project = Project.find(params[:id])
-    autorize! :update, @project
+    authorize! :update, @project
     @all_users = User.all;
   end
 
@@ -61,7 +61,7 @@ class ProjectsController < ApplicationController
   # PUT /projects/1.json
   def update
     @project = Project.find(params[:id])
-    autorize! :update, @project
+    authorize! :update, @project
 
     respond_to do |format|
       if @project.update_attributes(params[:project])
@@ -78,7 +78,7 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1.json
   def destroy
     @project = Project.find(params[:id])
-    autorize! :destroy, @project
+    authorize! :destroy, @project
     @project.destroy
 
     respond_to do |format|

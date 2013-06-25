@@ -1,0 +1,20 @@
+!!!
+%html
+  %head
+    %title Teamvillage
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    .b-caption
+      - if user_signed_in?
+        Signed in as 
+        %span.user-name #{current_user.name}.
+        =link_to 'Home', root_path
+        =link_to 'Signed out', destroy_user_session_path
+      - else
+        =link_to 'Signed in', new_user_session_path
+        or =link_to 'Signed up', new_user_registration_path.
+    %p.notice= notice
+    %p.alert= alert
+    .b-main= yield
