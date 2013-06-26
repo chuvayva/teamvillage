@@ -25,12 +25,12 @@ Background:
 Scenario: user hasn't project
 	Given I am sign in as "Fedor" with password "123456"
 	And I am on the home page
-	Then should see 0 rows in ".b-tasks" table
+	Then should see 0 rows in ".b-data-table" table
 
 Scenario: user view all tasks
 	Given I am sign in as "Max" with password "123456"
 	And I am on the home page
-	Then should see 3 rows in ".b-tasks" table
+	Then should see 3 rows in ".b-data-table" table
 
 # Scenario: user can switch between projects
 # 	Given I am sign in as "Fedor" with password "123456"

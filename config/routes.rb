@@ -1,6 +1,11 @@
 Teamvillage::Application.routes.draw do
 
   devise_for :users
+  resources :users, except: :new
+
+  # resources :users do
+  #   get 'user_tasks', :on => :collection
+  # end
 
   resources :tasks do
     put 'close', :on => :member, :as => 'close'

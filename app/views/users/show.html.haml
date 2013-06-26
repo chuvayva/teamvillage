@@ -1,2 +1,11 @@
-%h1 Users#show
-%p Find me in app/views/users/user_tasks.html.haml
+%h1.b-title
+  User:
+  = @user.name
+%p
+  %b Email:
+  = @user.email
+
+
+= link_to 'Edit', edit_user_path(@user)
+\|
+= link_to 'Back', users_path
