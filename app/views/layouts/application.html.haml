@@ -14,7 +14,9 @@
         =link_to 'Signed out', destroy_user_session_path
       - else
         =link_to 'Signed in', new_user_session_path
-        or =link_to 'Signed up', new_user_registration_path.
-    %p.notice= notice
-    %p.alert= alert
-    .b-main= yield
+        or 
+        =link_to 'Signed up', new_user_registration_path
+    .b-main
+      %p.notice= notice
+      %p.alert= alert
+      = yield

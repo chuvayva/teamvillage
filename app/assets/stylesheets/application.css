@@ -21,7 +21,7 @@ body {
 	text-align: right;
 	background-color: #bef574;
 	padding: 0 10px;
-	border-bottom: 5px solid #93c452;
+	border-bottom: 3px solid #93c452;
 	line-height: 2
 }
 
@@ -30,6 +30,8 @@ body {
   color: #417872;
 }
 
-.b-main {
-	margin: 8px;
+
+.notice, .warning, .alert {
+  background: yellow;
+  line-height: 30px;
 }

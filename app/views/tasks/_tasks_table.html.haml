@@ -1,4 +1,4 @@
-%table.b-tasks
+%table.b-data-table
   %thead
     %tr
       %th Name
@@ -6,10 +6,7 @@
       %th Status
       %th Persentage
       %th Project
-      %th
-      %th
-      %th
-      %th
+      %th{colspan: 4} Actions      
   %tbody
     - tasks.each do |task|
       %tr
