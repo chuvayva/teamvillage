@@ -30,6 +30,10 @@ body {
   color: #417872;
 }
 
+.left-anchor {
+	color: #417872;
+	position: absolute;
+}
 
 .notice, .warning, .alert {
   background: yellow;

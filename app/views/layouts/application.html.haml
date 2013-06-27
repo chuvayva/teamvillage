@@ -8,6 +8,8 @@
   %body
     .b-caption
       - if user_signed_in?
+        .left-anchor
+          = @role
         Signed in as 
         %span.user-name #{current_user.name}.
         =link_to 'Home', root_path

@@ -17,5 +17,14 @@ class Ability
 			user.executer_of?(task) or
 			user.owner_of?(task.project)
 		end
+
+		can [:update, :destroy], User do |updated_user|
+			user == updated_user or
+			user.role? :admin
+		end
+
+		if user.role? :admin
+				can :edit_roles, User
+		end
 	end
 end

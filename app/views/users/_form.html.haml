@@ -10,6 +10,10 @@
     = f.text_field :name  
   .field
     = f.label :email
-    = f.email_field :email    
+    = f.email_field :email   
+  - if can? :edit_roles, @user
+    - User::ROLES.each do |role|
+      = role.capitalize
+      = check_box_tag "user[roles[#{role}]]", 1, @user.role?(role), :id =>"role_#{role}"
   .actions
-    = f.submit 'Save'
+    = submit_tag 'Save'

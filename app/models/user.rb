@@ -8,10 +8,10 @@ class User < ActiveRecord::Base
 
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :name, :roles, :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
 
-  ROLES = %w[admin manager developer]
+  ROLES = %w[admin]
 
 
   def executing_tasks(project = nil)
@@ -22,7 +22,11 @@ class User < ActiveRecord::Base
   end
 
   def roles=(roles)
-  	self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
+    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
+  end
+
+  def self.roles_from_hash(roles)
+    roles ? roles.keys : []
 	end
 
 	def roles

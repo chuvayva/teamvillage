@@ -22,7 +22,7 @@ Background:
 		|	Buy sunglasses		| Mars		  | 90 				 |
 
 
-Scenario: user hasn't project
+Scenario: user does not has project
 	Given I am sign in as "Fedor" with password "123456"
 	And I am on the home page
 	Then should see 0 rows in ".b-data-table" table
