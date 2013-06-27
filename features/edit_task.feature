@@ -6,9 +6,9 @@ So I can edit tasks of the project
 
 Background: 
 	Given the following users exist:
-	  | name	| email								| password	|
-	  | Fedor	| baikonur_1@bk.ru		| 123456		|
-	  | Max		| baikonur_2@bk.ru		| 123456		|
+	  | name	| email								| password	| roles |
+	  | Fedor	| baikonur_1@bk.ru		| 123456		|	 			|
+	  | Max		| baikonur_2@bk.ru		| 123456		| 			|
 
 	And the following projects exist:
 		|	name		| owner |
@@ -22,7 +22,7 @@ Background:
 Scenario: edit task info
 	Given I am sign in as "Fedor" with password "123456"
 	And I am on the "Mars" project page
-	When follow "Edit" button on "Count satellites" task
+	When follow "Edit" button on "Count satellites" row
 	Then I should be on edit "Count satellites" task page 
 	When I fill in "Name" with "Meet strangers"
 	And I fill in "Persentage" with "50"

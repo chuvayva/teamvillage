@@ -6,9 +6,9 @@ I can see list of tasks of chosen project
 Background:
 
   Given the following users exist:
-	  | email							| password | name 	|
-	  | baikonur_1@bk.ru	| 123456 	 | Fedor	|
-	  | baikonur_2@bk.ru 	| 123456 	 | Max		|
+	  | email							| password | name 	| roles |
+	  | baikonur_1@bk.ru	| 123456 	 | Fedor	|				|
+	  | baikonur_2@bk.ru 	| 123456 	 | Max		|				|
 
 	And the following projects exist:
 		|	name		| owner |

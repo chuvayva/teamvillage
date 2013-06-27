@@ -5,9 +5,9 @@ Feature: create new project
 Background:
 
 	Given the following users exist:
-	  | name	| email						| password	|
-	  | Fedor	| baikonur_1@bk.ru		| 123456		|
-	  | Max		| baikonur_2@bk.ru		| 123456		|
+	  | name	| email						    | password	| roles |
+	  | Fedor	| baikonur_1@bk.ru		| 123456		|       | 
+	  | Max		| baikonur_2@bk.ru		| 123456		|       |
 
 	And the following projects exist:
 		|	name		| owner |

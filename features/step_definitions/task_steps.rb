@@ -20,9 +20,9 @@ Given /^the following tasks exist\:$/ do |projects|
   end
 end
 
-When(/^follow "(.*?)" button on "(.*?)" task$/) do |action, name|
+When(/^follow "(.*?)" button on "(.*?)" row$/) do |action, content|
   all('tr').each do |row|
-    if row.has_content? name
+    if row.has_content? content
       row.click_link action
     end
   end

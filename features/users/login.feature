@@ -6,8 +6,8 @@ Feature: login
 Background: 
 
   Given the following users exist:
-  | email 				| password |
-  | baikonur_1@bk.ru | 123456 	 |
+  | email 						| password | roles 	|
+  | baikonur_1@bk.ru 	| 123456 	 |				|
 
 Scenario: user sign up
   Given I am on the sign up page

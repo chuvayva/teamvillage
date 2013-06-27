@@ -1,22 +1,23 @@
 %h1.b-title Listing users
 
 %table.b-data-table
-  %tr
-    %th Name
-    %th Email
-    %th{colspan: 4} Actions
-
-  - @users.each do |user|
+  %thead
     %tr
-      %td= user.name
-      %td= user.email
-      %td= link_to 'Show', user
-      %td
-        - if can? :update, user
-          = link_to 'Edit', edit_user_path(user)
-      %td
-        - if can? :destroy, user
-          = link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }
-      %td
+      %th Name
+      %th Email
+      %th{colspan: 4} Actions
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.name
+        %td= user.email
+        %td= link_to 'Show', user
+        %td
+          - if can? :update, user
+            = link_to 'Edit', edit_user_path(user)
+        %td
+          - if can? :destroy, user
+            = link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td
 
 
