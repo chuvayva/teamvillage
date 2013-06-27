@@ -15,5 +15,9 @@
     - User::ROLES.each do |role|
       = role.capitalize
       = check_box_tag "user[roles[#{role}]]", 1, @user.role?(role), :id =>"role_#{role}"
+  - if can? :block, @user
+    .field
+      = f.label :blocked
+      = f.check_box :blocked
   .actions
     = submit_tag 'Save'

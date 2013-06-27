@@ -35,7 +35,7 @@ body {
 	position: absolute;
 }
 
-.notice, .warning, .alert {
+.notice, .error, .alert {
   background: yellow;
   line-height: 30px;
 }

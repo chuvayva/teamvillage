@@ -32,6 +32,12 @@ module NavigationHelpers
     when /^the "([^"]+)" project page$/
       project_path Project.find_by_name($1)
 
+    when /^the "([^"]+)" user page$/
+      user_path User.find_by_name($1)
+
+    when /^edit "([^"]+)" user page$/
+      edit_user_path User.find_by_name($1)
+
     when /^edit "([^"]+)" task page$/
       edit_task_path Task.find_by_name($1)
 

@@ -1,9 +1,12 @@
 %h1.b-title
   User:
   = @user.name
+  - if @user.blocked?
+    %span.blocked-label (Blocked)
 %p
   %b Email:
   = @user.email
+
 
 
 = link_to 'Edit', edit_user_path(@user)

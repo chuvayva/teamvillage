@@ -27,5 +27,9 @@ describe UsersController do
       delete("/users/1").should route_to("users#destroy", :id => "1")
     end
 
+    it "routes to #block" do
+      put("/users/1/block").should route_to("users#block", :id => "1")
+    end
+
   end
 end
