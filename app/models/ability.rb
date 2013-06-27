@@ -19,9 +19,10 @@ class Ability
 		end
 
 		if user.role? :admin
-				can [:update, :destroy, :edit_roles], User
-				can :block, User do |blocked_user|
-					user != blocked_user
+				can [:update, :destroy], User 
+
+				can [:block, :edit_roles], User do |edited_user|
+					user != edited_user
 				end
 		else
 			can [:update, :destroy], User do |updated_user|
