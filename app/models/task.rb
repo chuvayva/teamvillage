@@ -8,24 +8,10 @@ class Task < ActiveRecord::Base
 
   attr_accessible :name, :persentage, :project_id, :executer_id, :status, :executer, :description
 
-
-  STATUS = {:New => 0, :Assigned => 1, :'In progress'=> 2, :Finished => 3, :Closed => 4}
-
-  def status
-    STATUS.key(read_attribute(:status))
-  end
- 
-  def status=(s)
-    write_attribute(:status, STATUS[s.to_sym])
-  end
-
-  
-  def closed?
-    self.status == :Closed
-  end
+  symbolize :status , :in =>[:new, :assigned, :finished, :closed], default: :new
 
   def close
-    self.status = :Closed
+    self.status = :closed
     self.persentage = 100
   end
 

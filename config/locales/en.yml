@@ -3,3 +3,11 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    symbolizes:
+      status:
+        new: New
+        assigned: Assigned
+        finished: Finished
+        closed: Closed
+
