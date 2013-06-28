@@ -119,9 +119,11 @@ class TasksController < ApplicationController
   private
 
   def init_form_collections_for(task)
+    #WTF??????
     @all_users = User.all;
+    #WTF???????
     @all_projects = Project.all;
-    @all_statuses = Task::STATUS.keys
-    @all_statuses.delete :Closed
+    @all_statuses = Hash[Task.get_status_values].values
+    @all_statuses.delete :closed
   end
 end

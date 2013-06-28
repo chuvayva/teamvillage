@@ -11,12 +11,12 @@ describe Task do
 
   describe '#close' do
   	before do
-  		@task = build(:task, status: :New, persentage: 20)
+  		@task = build(:task, status: :new, persentage: 20)
   		@task.close
   	end
 
   	it 'task has status \'Closed\'' do
-  		@task.status.should == :Closed
+  		@task.status.should == :closed
   	end
 
   	it 'task has persentage == 100' do
