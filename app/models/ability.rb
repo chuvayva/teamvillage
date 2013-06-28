@@ -2,6 +2,8 @@ class Ability
 	include CanCan::Ability
 
 	def initialize(user)
+		can [:read,:create,:user_tasks], :all
+		
 		user ||= User.new
 
 		can [:update, :destroy], Project do |project|

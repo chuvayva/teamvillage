@@ -1,9 +1,8 @@
 class TasksController < ApplicationController
+  load_and_authorize_resource
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tasks }
@@ -13,8 +12,6 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
-    @task = Task.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @task }
@@ -24,7 +21,6 @@ class TasksController < ApplicationController
   # GET /tasks/new
   # GET /tasks/new.json
   def new
-    @task = Task.new
     @task.project = Project.find_by_id params[:project_id]
     init_form_collections
       
@@ -36,16 +32,12 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
-    @task = Task.find(params[:id])
-    authorize! :update, @task
     init_form_collections
   end
 
   # POST /tasks
   # POST /tasks.json
   def create
-    @task = Task.new(params[:task])
-    
     respond_to do |format|
       if @task.save
         format.html do 
@@ -69,9 +61,6 @@ class TasksController < ApplicationController
   # PUT /tasks/1
   # PUT /tasks/1.json
   def update
-    @task = Task.find(params[:id])
-    authorize! :update, @task
-
     respond_to do |format|
       if @task.update_attributes(params[:task])
         format.html { redirect_to @task, notice: 'Task was successfully updated.' }
@@ -87,9 +76,6 @@ class TasksController < ApplicationController
   # DELETE /tasks/1
   # DELETE /tasks/1.json
   def destroy
-    @task = Task.find(params[:id])
-    authorize! :destroy, @task
-
     @task.destroy
 
     respond_to do |format|
@@ -99,11 +85,7 @@ class TasksController < ApplicationController
   end
 
   def close
-    @task = Task.find(params[:id])
-    authorize! :close, @task
-
     @task.close
-    
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'Task was successfully closed.' }

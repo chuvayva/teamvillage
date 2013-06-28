@@ -1,6 +1,6 @@
 Given /the following users exist\:/ do |users|
   users.hashes.each do |hash|
-		hash['roles'] = hash['roles'].split /,\s*/
+		hash['roles'] = hash['roles'].split /,\s*/ if hash['roles']
     User.create(hash)
   end
 end

@@ -1,9 +1,9 @@
 class ProjectsController < ApplicationController
+  load_and_authorize_resource
+
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @projects }
@@ -13,7 +13,6 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @project = Project.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
@@ -23,7 +22,6 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   # GET /projects/new.json
   def new
-    @project = Project.new
     @project.owner = User.find_by_id params[:owner_id]
 
     @all_users = User.all;
@@ -36,16 +34,12 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
-    @project = Project.find(params[:id])
-    authorize! :update, @project
     @all_users = User.all;
   end
 
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.new(params[:project])
-
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
@@ -60,9 +54,6 @@ class ProjectsController < ApplicationController
   # PUT /projects/1
   # PUT /projects/1.json
   def update
-    @project = Project.find(params[:id])
-    authorize! :update, @project
-
     respond_to do |format|
       if @project.update_attributes(params[:project])
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
@@ -77,8 +68,6 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
-    @project = Project.find(params[:id])
-    authorize! :destroy, @project
     @project.destroy
 
     respond_to do |format|

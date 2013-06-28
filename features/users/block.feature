@@ -11,14 +11,6 @@ Background:
   | baikonur_3@bk.ru 	| Blocker| 123456			|  			|		true	|
 
 
-
-Scenario: User cann't block if user does not admin 
-	Given I am sign in as "Fedor" with password "123456"
-	When I am on edit "Max" user page
-	Then I should not see "Blocked"
-	When I am on edit "Fedor" user page
-	Then I should not see "Blocked"
-
 Scenario: User can block if user admin 
 	Given I am sign in as "Max" with password "123456"
 	When I am on edit "Max" user page
