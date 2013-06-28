@@ -25,10 +25,6 @@ class User < ActiveRecord::Base
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
   end
 
-  def self.roles_from_hash(roles)
-    roles ? roles.keys : []
-	end
-
 	def roles
   	ROLES.reject { |r| ((self.roles_mask || 0) & 2**ROLES.index(r)).zero? }
 	end

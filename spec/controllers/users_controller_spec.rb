@@ -65,7 +65,7 @@ before { controller.stub(:authorize!).and_return true }
         # specifies that the User created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        User.any_instance.should_receive(:update_attributes).with({ "these" => "params" , "roles" => []})
+        User.any_instance.should_receive(:update_attributes).with({ "these" => "params", "roles" => [] })
         put :update, {:id => user.to_param, :user => { "these" => "params" }}, valid_session
       end
 

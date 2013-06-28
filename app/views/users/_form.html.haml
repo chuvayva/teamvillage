@@ -11,13 +11,14 @@
   .field
     = f.label :email
     = f.email_field :email   
-  - if can? :edit_roles, @user
-    - User::ROLES.each do |role|
-      = role.capitalize
-      = check_box_tag "user[roles[#{role}]]", 1, @user.role?(role), :id =>"role_#{role}"
   - if can? :block, @user
     .field
       = f.label :blocked
       = f.check_box :blocked
+
+  - if can? :edit_roles, @user
+    - User::ROLES.each do |role|
+      = role.capitalize
+      = check_box_tag "user[roles][]",role, @user.role?(role)
   .actions
     = submit_tag 'Save'
