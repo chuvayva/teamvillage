@@ -2,12 +2,13 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  hello: Hello world
   activerecord:
     symbolizes:
-      status:
-        new: New
-        assigned: Assigned
-        finished: Finished
-        closed: Closed
+      task:
+        status:
+          new: New
+          assigned: Assigned
+          finished: Finished
+          closed: Closed
 

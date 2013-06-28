@@ -1,4 +1,4 @@
--if task.closed?
+-if task.status == :closed
   %b
     = form.label task.status
 -else
