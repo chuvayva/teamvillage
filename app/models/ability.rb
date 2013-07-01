@@ -7,6 +7,7 @@ class Ability
 		user ||= User.new
 
 		can [:update, :destroy], Project do |project|
+			project.owner == nil or
 			user.owner_of?(project)
 		end
 

@@ -1,6 +1,6 @@
 class MailerController < ApplicationController
 	def status
-		user = current_user
+		user = User.find params[:id]
 
 		@name = user.name
   	@owned_projects = Project.owned_by(user).includes(:tasks)
