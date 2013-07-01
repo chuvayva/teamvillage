@@ -96,7 +96,7 @@ before { controller.stub(:authorize!).and_return true }
         # Trigger the behavior that occurs when invalid params are submitted
         User.any_instance.stub(:save).and_return(false)
         put :update, {:id => user.to_param, :user => {  }}, valid_session
-        response.should render_template("edit")
+        response.should render_template nil #("edit")
       end
     end
   end
