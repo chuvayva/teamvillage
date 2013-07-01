@@ -1,7 +1,7 @@
 Teamvillage::Application.routes.draw do
 
   devise_for :users
-  resources :users, :except => :new  do
+  resources :users, :except => [:new, :create]  do
     put 'block', :on => :member, :as => 'block'
   end
 

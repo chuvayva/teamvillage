@@ -20,7 +20,6 @@ class TasksController < ApplicationController
 
   def edit
     init_form_collections
-    # respond_with @task
   end
 
   def create

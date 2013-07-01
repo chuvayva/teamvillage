@@ -91,11 +91,11 @@ before { controller.stub(:authorize!).and_return true }
         assigns(:project).should be_a_new(Project)
       end
 
-      it "re-renders the 'new' template" do
+      it "re-renders the '' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Project.any_instance.stub(:save).and_return(false)
         post :create, {:project => { "name" => "invalid value" }}, valid_session
-        response.should render_template("new")
+        response.should render_template nil #("new")
       end
     end
   end
@@ -134,12 +134,12 @@ before { controller.stub(:authorize!).and_return true }
         assigns(:project).should eq(project)
       end
 
-      it "re-renders the 'edit' template" do
+      it "re-renders the '' template" do
         project = Project.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Project.any_instance.stub(:save).and_return(false)
         put :update, {:id => project.to_param, :project => { "name" => "invalid value" }}, valid_session
-        response.should render_template("edit")
+        response.should render_template nil #("edit")
       end
     end
   end
