@@ -30,6 +30,7 @@ gem 'rspec-rails'
 gem 'wkhtmltopdf'
 gem 'haml-rails'
 gem 'symbolize'
+gem 'responders'
 
 gem 'capybara'
 
