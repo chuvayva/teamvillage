@@ -3,7 +3,10 @@ class UserMailer < ActionMailer::Base
 
   def status(user)
   	@name = user.name
-  	@projects = Project.where('owner_id = :user', user: user).includes(:tasks)
+  	@owned_projects = Project.owned_by(user).includes(:tasks)
+  	@paricipate_projects = Project.executed_by(user).includes(:tasks) 
+  	@paricipate_projects -= @owned_projects
+  	
   	mail to: user.email, subject: 'Projects status'
   end
 end

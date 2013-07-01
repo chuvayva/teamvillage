@@ -6,6 +6,15 @@ class MailerController < ApplicationController
   	@owned_projects = Project.owned_by(user).includes(:tasks)
   	@paricipate_projects = Project.executed_by(user).includes(:tasks) 
   	@paricipate_projects -= @owned_projects
-  	render :file => 'user_mailer/status.html.haml', :layout => false
+
+  	render :file => 'user_mailer/status.html.haml', :layout => 'mail'
+	end
+
+	def send_status
+		user = User.find params[:id]
+
+		user.send_status_mail
+
+		render nothing: true
 	end
 end
