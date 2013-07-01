@@ -43,4 +43,13 @@ describe User do
       end
     end
   end
+  
+  describe '#send_status_mail' do
+    let(:user) { create :developer }
+
+    it 'sends a e-mail' do
+      user.send_status_mail
+      ActionMailer::Base.deliveries.last.to.should == [user.email]
+    end
+  end
 end

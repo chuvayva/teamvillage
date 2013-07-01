@@ -15,6 +15,8 @@ Teamvillage::Application.routes.draw do
 
   resources :projects
 
+  match 'm/:action/:id' => 'mailer#:action'
+
   # resources :projects do
   #   resources :tasks
   # end

@@ -41,6 +41,12 @@ class User < ActiveRecord::Base
     task.try(:executer) == self
   end
 
+  def send_status_mail    
+    UserMailer.status(self).deliver
+  end
+
+
+
   def to_s
     name
   end

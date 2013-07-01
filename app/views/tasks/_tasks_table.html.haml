@@ -1,3 +1,6 @@
+-# default show actions
+- with_actions = true unless local_assigns.has_key? :with_actions
+
 %table.b-data-table
   %thead
     %tr
@@ -6,22 +9,24 @@
       %th Status
       %th Persentage
       %th Project
-      %th{colspan: 4} Actions      
+      - if with_actions
+        %th{colspan: 4} Actions      
   %tbody
     - tasks.each do |task|
       %tr
         %td= task.name
         %td= task.executer
         %td= t(task.status)
-        %td= task.persentage
+        %td.number-column= "#{task.persentage} %"
         %td= task.project
-        %td= link_to 'Show', task
-        %td
-          - if can_be_closed? task
-            = link_to 'Close', close_task_path(task), method: :put
-        %td 
-          - if can? :update, task
-            = link_to 'Edit', edit_task_path(task)
-        %td
-          - if can? :destroy, task
-            = link_to 'Destroy', task, method: :delete, data:  { confirm: 'Are you sure?' }
+        - if with_actions
+          %td= link_to 'Show', task
+          %td
+            - if can_be_closed? task
+              = link_to 'Close', close_task_path(task), method: :put
+          %td 
+            - if can? :update, task
+              = link_to 'Edit', edit_task_path(task)
+          %td
+            - if can? :destroy, task
+              = link_to 'Destroy', task, method: :delete, data:  { confirm: 'Are you sure?' }
