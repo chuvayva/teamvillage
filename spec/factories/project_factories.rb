@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :project do
-    sequence(:name) { |n| "MyString #{n}" }
+    sequence(:name) { |n| "Super name #{n}" }
   end
 end

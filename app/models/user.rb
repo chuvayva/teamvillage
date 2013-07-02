@@ -45,6 +45,12 @@ class User < ActiveRecord::Base
     UserMailer.status(self).deliver
   end
 
+  def self.send_status_mail
+    select('id, name, email').each do |user|
+      user.send_status_mail
+    end
+  end
+
 
   def to_s
     name
