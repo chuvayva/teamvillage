@@ -5,6 +5,6 @@ And /^the "(.+)" job exists$/ do |name|
   Rake.application.rake_require "lib/tasks/#{name}", [Rails.root.to_s]
 end
 
-And /^the "(.+)" job has fired$/ do |task|
+And /^the "(.+)" task has fired$/ do |task|
   Rake::Task[task].invoke
 end
