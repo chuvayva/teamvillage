@@ -51,6 +51,7 @@ describe User do
         pdf_kit = mock('PDFKit')
         PDFKit.stub(:new).and_return pdf_kit
         pdf_kit.stub(:to_pdf)
+        pdf_kit.stub(:stylesheets).and_return []
     end
 
     it 'sends a e-mail' do

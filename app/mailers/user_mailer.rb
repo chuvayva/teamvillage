@@ -10,6 +10,7 @@ class UserMailer < ActionMailer::Base
   	html = render_to_string(template: 'user_mailer/status', layout: 'mail',locals: { :@name => @name, :@owned_projects => @owned_projects, :@paricipate_projects => @paricipate_projects })
 
 		kit = PDFKit.new(html)
+		kit.stylesheets << 'application.css' 
 
 		attachments['status.pdf'] = kit.to_pdf
 
