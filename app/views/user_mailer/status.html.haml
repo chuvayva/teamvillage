@@ -2,6 +2,6 @@
 
 = render partial: 'user_mailer/projects_info', locals: {title: 'Projects that you manage', projects: @owned_projects}
 
-= render partial: 'user_mailer/projects_info', locals: {title: 'Projects that you only develop', projects: @paricipate_projects}
+= render partial: 'user_mailer/projects_info', locals: {title: 'Projects that you only develop', projects: @participate_projects}
 
 %p= Time.now.strftime "%Y-%m-%d %H:%M"

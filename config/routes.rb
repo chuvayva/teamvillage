@@ -13,6 +13,6 @@ Teamvillage::Application.routes.draw do
 
   root :to => 'users#user_tasks'
 
-  match 'm/:action/:id' => 'mailer#:action'
+  # match 'm/:action/:id' => 'mailer#:action'
 
 end

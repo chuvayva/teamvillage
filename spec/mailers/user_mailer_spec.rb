@@ -21,7 +21,7 @@ describe UserMailer do
     end
 
     it 'renders that the sender is correct' do
-	    mail.from.should == ["from@example.com"] 
+	    mail.from.should == ["teamvillage@mail.com"] 
 	  end
 
     it 'renders name in the body' do 

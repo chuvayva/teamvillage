@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "teamvillage@mail.com"
 
   STYLESHEETS_PATH = 'public/assets/application.css' 
 
@@ -17,8 +17,8 @@ class UserMailer < ActionMailer::Base
   def init_instance_vaiables_for(user)
   	@name = user.name
   	@owned_projects = Project.owned_by(user).includes(:tasks)
-  	@paricipate_projects = Project.executed_by(user).includes(:tasks) 
-  	@paricipate_projects -= @owned_projects
+  	@participate_projects = Project.executed_by(user).includes(:tasks) 
+  	@participate_projects -= @owned_projects
   end
 
   def instance_variables_hash
