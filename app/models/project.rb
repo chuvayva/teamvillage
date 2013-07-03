@@ -3,7 +3,7 @@ class Project < ActiveRecord::Base
 	belongs_to :owner, class_name: 'User'
 
 	scope :owned_by, ->(user) { where owner_id:user }
-	scope :executed_by, ->(user) { joins(tasks: :executer).where('users.id = ?', user).group('projects.name') }
+	scope :executed_by, ->(user) { joins(tasks: :executer).where('users.id = ?', user).group('projects.id') }
 
 	validates :name, presence: true, uniqueness: true
   attr_accessible :name, :owner_id

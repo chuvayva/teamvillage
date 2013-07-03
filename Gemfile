@@ -6,17 +6,16 @@ gem 'devise'
 gem 'cancan'
 gem 'draper'
 gem 'resque'
-gem 'rspec'
-gem 'rspec-rails'
 gem 'wkhtmltopdf'
 gem 'haml-rails'
 gem 'symbolize'
 gem 'responders'
-
+gem 'whenever'
 gem 'capybara'
 
 gem 'sqlite3', group: [:development, :test]
 
+gem 'yaml_db'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -28,6 +27,7 @@ end
 group :test do
   gem 'cucumber-rails', require: false
   gem 'cucumber-rails-training-wheels'
+  gem 'rspec'
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'database_cleaner'
