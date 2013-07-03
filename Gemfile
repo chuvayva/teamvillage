@@ -6,16 +6,16 @@ gem 'devise'
 gem 'cancan'
 gem 'draper'
 gem 'resque'
-gem 'wkhtmltopdf'
+# gem 'wkhtmltopdf'
 gem 'haml-rails'
 gem 'symbolize'
 gem 'responders'
 gem 'whenever'
 gem 'capybara'
+gem 'pdfkit'
+gem 'yaml_db'
 
 gem 'sqlite3', group: [:development, :test]
-
-gem 'yaml_db'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
