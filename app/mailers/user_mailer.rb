@@ -9,9 +9,10 @@ class UserMailer < ActionMailer::Base
   	
   	html = render_to_string(template: 'user_mailer/status', layout: 'mail',locals: { :@name => @name, :@owned_projects => @owned_projects, :@paricipate_projects => @paricipate_projects })
 
-  	puts html
 		kit = PDFKit.new(html)
-		kit.to_file('f.pdf')
+
+		attachments['status.pdf'] = kit.to_pdf
+
   	mail to: user.email, subject: 'Projects status'
   end
 end

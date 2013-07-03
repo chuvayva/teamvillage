@@ -46,6 +46,12 @@ describe User do
   
   describe '#send_status_mail' do
     let(:user) { create :developer }
+    
+    before :each do
+        pdf_kit = mock('PDFKit')
+        PDFKit.stub(:new).and_return pdf_kit
+        pdf_kit.stub(:to_pdf)
+    end
 
     it 'sends a e-mail' do
       user.send_status_mail
