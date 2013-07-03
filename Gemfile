@@ -15,8 +15,8 @@ gem 'capybara'
 gem 'pdfkit'
 gem 'yaml_db'
 
-gem 'sqlite3', group: [:development, :test]
-
+gem 'sqlite3', group: [:test, :development]
+gem 'pg', '0.15.1', group: [:development, :production]
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
@@ -35,6 +35,6 @@ group :test do
 end
 
 group :production do
-  gem 'pg', '0.15.1'
+  gem "wkhtmltopdf-heroku", "~> 1.0.0"
 end
 
