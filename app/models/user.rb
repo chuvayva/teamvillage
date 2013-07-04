@@ -41,15 +41,22 @@ class User < ActiveRecord::Base
     task.try(:executer) == self
   end
 
-  def send_status_mail    
-    UserMailer.status(self).deliver
-  end
-
   def self.send_status_mail
     select('id, name, email').each do |user|
       user.send_status_mail
     end
   end
+
+  # user owns the project or execute task
+  def need_send_status_mail?
+    Project.owned_by(self).count > 0 ||
+    Project.executed_by(self).count.present?
+  end
+
+  def send_status_mail    
+    UserMailer.status(self).deliver if need_send_status_mail?
+  end
+
 
 
   def to_s
