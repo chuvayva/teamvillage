@@ -45,7 +45,8 @@ describe User do
   end
   
   describe '#send_status_mail' do
-    let(:user) { create :developer }
+    let(:projects) { [create(:project)] }
+    let(:user) { create :developer, projects: projects }
     
     before :each do
         pdf_kit = mock('PDFKit')
