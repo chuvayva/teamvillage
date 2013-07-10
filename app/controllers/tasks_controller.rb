@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
-
-  load_and_authorize_resource
+  load_and_authorize_resource :project
+  load_and_authorize_resource :task, through: :project
 
   responders :flash
   respond_to :html, :json
@@ -14,9 +14,6 @@ class TasksController < ApplicationController
   end
 
   def new
-    #TODO: add rescue
-    @task.project = Project.find params[:project_id]
-    # @task.project = Project.find_by_id params[:project_id]
     init_form_collections
   end
 
