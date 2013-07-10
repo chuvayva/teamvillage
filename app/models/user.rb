@@ -1,4 +1,7 @@
+require 'Modules/Roles'
+
 class User < ActiveRecord::Base
+  include Roles
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -9,8 +12,6 @@ class User < ActiveRecord::Base
 
   attr_accessible :name, :roles, :blocked, :email, :password, :password_confirmation, :remember_me
 
-  ROLES = %w[admin]
-
 
   def executing_tasks(project = nil)
     tasks = Task.where('executer_id = :user', user: self)
@@ -18,18 +19,6 @@ class User < ActiveRecord::Base
 
     tasks
   end
-
-  def roles=(roles)
-    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
-  end
-
-	def roles
-  	ROLES.reject { |r| ((self.roles_mask || 0) & 2**ROLES.index(r)).zero? }
-	end
-
-	def role?(role)
-		roles.include? role.to_s
-	end
 
   def owner_of?(project)
     project.try(:owner) == self
