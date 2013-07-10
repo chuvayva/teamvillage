@@ -10,8 +10,8 @@
     = f.label :name
     = f.text_field :name
   .field
-    = f.label :project_id
-    = f.collection_select(:project_id, @all_projects, :id, :name, :prompt => 'Please select project', multiselect: true) 
+    Project
+    %b= @task.project
   .field
     = f.label :executer_id
     = f.collection_select(:executer_id, @all_users, :id, :name, :prompt => '') 

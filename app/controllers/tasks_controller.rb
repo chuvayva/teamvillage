@@ -64,7 +64,6 @@ class TasksController < ApplicationController
 
   def init_form_collections  
     @all_users = User.select 'id, name'
-    @all_projects = Project.select 'id, name'
     @all_statuses = Hash[Task.get_status_values].values
     @all_statuses.delete :closed
   end

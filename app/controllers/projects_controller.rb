@@ -15,12 +15,9 @@ class ProjectsController < ApplicationController
 
   def new
     @project.owner = current_user
-
-    @all_users = User.select 'id, name'
   end
 
   def edit
-    @all_users = User.select 'id, name'
   end
 
   def create
