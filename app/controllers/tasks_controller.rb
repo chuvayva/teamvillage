@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   respond_to :html, :json
 
   def index
-    respond_with @tasks
+    respond_with @project, @tasks
   end
 
   def show
@@ -14,7 +14,9 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task.project = Project.find_by_id params[:project_id]
+    #TODO: add rescue
+    @task.project = Project.find params[:project_id]
+    # @task.project = Project.find_by_id params[:project_id]
     init_form_collections
   end
 
@@ -24,7 +26,7 @@ class TasksController < ApplicationController
 
   def create
     init_form_collections unless @task.save
-    respond_with @task
+    respond_with @task.project, @task
     # respond_to do |format|
     #   if @task.save
     #     format.html do 
@@ -47,7 +49,7 @@ class TasksController < ApplicationController
 
   def update
     init_form_collections unless @task.update_attributes(params[:task])
-    respond_with @task
+    respond_with @task.project, @task
   end
 
   def destroy

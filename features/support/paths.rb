@@ -39,10 +39,12 @@ module NavigationHelpers
       edit_user_path User.find_by_name($1)
 
     when /^edit "([^"]+)" task page$/
-      edit_task_path Task.find_by_name($1)
+      task = Task.find_by_name($1)
+      edit_project_task_path task.project, task
 
     when /^the "([^"]+)" task page$/
-      task_path Task.find_by_name($1)
+      task = Task.find_by_name($1)
+      project_task_path task.project, task
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

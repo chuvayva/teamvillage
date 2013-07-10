@@ -18,6 +18,6 @@
   %br
     = @task.description
 - if can? :update, @task
-  = link_to 'Edit', edit_task_path(@task)
+  = link_to 'Edit', edit_project_task_path(@task.project, @task)
   \|
-= link_to 'All Tasks', tasks_path
+= link_to 'All Tasks', project_tasks_path

@@ -5,11 +5,11 @@ Teamvillage::Application.routes.draw do
     put 'block', :on => :member, :as => 'block'
   end
 
-  resources :tasks do
-    put 'close', :on => :member, :as => 'close'
+  resources :projects do 
+    resources :tasks do
+      put 'close', :on => :member, :as => 'close'
+    end
   end
-
-  resources :projects
 
   root :to => 'users#user_tasks'
 

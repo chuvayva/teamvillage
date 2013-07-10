@@ -20,13 +20,13 @@
         %td.number-column= "#{task.persentage} %"
         %td= task.project
         - if with_actions
-          %td= link_to 'Show', task
+          %td= link_to 'Show', [task.project, task]
           %td
             - if can_be_closed? task
-              = link_to 'Close', close_task_path(task), method: :put
+              = link_to 'Close', close_project_task_path(task.project, task), method: :put
           %td 
             - if can? :update, task
-              = link_to 'Edit', edit_task_path(task)
+              = link_to 'Edit', edit_project_task_path(task.project, task)
           %td
             - if can? :destroy, task
-              = link_to 'Destroy', task, method: :delete, data:  { confirm: 'Are you sure?' }
+              = link_to 'Destroy', [task.project, task], method: :delete, data:  { confirm: 'Are you sure?' }

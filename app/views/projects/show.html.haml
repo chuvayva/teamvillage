@@ -8,7 +8,7 @@
 = render partial: 'tasks/tasks_table',locals: {tasks: @project.tasks}
 
 %p
-  = link_to 'Add Task', new_task_path(:project_id => @project)
+  = link_to 'Add Task', new_project_task_path(@project)
   \|
   - if can? :update, @project
     = link_to 'Edit', edit_project_path(@project)
