@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  # user owns the project or execute task
+  # does user owns the project or execute task
   def need_send_status_mail?
     Project.owned_by(self).count > 0 ||
     Project.executed_by(self).count.present?
