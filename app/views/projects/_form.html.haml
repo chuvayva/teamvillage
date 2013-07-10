@@ -11,6 +11,6 @@
     = f.text_field :name
   .field
     = f.label :owner_id
-    = f.collection_select(:owner_id, @all_users, :id, :name, :prompt => '') 
+    %b= @project.owner
   .actions
     = f.submit 'Save'

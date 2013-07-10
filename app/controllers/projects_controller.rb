@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @project.owner = User.find_by_id params[:owner_id]
+    @project.owner = current_user
 
     @all_users = User.select 'id, name'
   end
