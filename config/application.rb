@@ -61,6 +61,9 @@ module Teamvillage
 
     config.assets.initialize_on_precompile = false
 
+    config.assets.compile = true
+    config.assets.precompile =  ['*.js', '*.css', '*.css.erb'] 
+
     config.generators do |g|
         g.text_framework :rspec, fixture: true
         g.fixture_replacement :factory_girl, dir: 'spec/factories'

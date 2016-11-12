@@ -12,6 +12,9 @@ gem 'symbolize'
 gem 'responders'
 gem 'capybara'
 gem 'pdfkit'
+gem 'test-unit'
+
+gem 'unicorn'
 
 group :test do
   gem 'cucumber-rails', require: false
@@ -21,7 +24,6 @@ group :test do
   gem 'simplecov'
   gem 'database_cleaner'
   gem 'factory_girl_rails'
-  gem 'sqlite3'
 end
 
 group :development do
@@ -33,7 +35,7 @@ group :production do
   gem "wkhtmltopdf-heroku", "~> 1.0.0"
 end
 
-gem 'pg', '0.15.1', group: [:development, :production]
+gem 'pg', group: [:development, :production]
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

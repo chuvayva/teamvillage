@@ -1,4 +1,4 @@
-require 'Modules/Roles'
+require 'modules/roles'
 
 class User < ActiveRecord::Base
   include Roles
