@@ -19,8 +19,10 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe UsersController do
-before { controller.stub(:authenticate_user!).and_return true }
-before { controller.stub(:authorize!).and_return true }
+
+  before { controller.stub(:authenticate_user!).and_return true }
+  before { controller.stub(:authorize!).and_return true }
+
   # This should return the minimal set of attributes required to create a valid
   # User. As you add validations to User, be sure to
   # adjust the attributes here as well.
@@ -119,7 +121,7 @@ before { controller.stub(:authorize!).and_return true }
   describe '#user_tasks' do
     it 'should call User#executing_tasks' do
       user = build :user
-      controller.stub(:current_user).and_return user 
+      controller.stub(:current_user).and_return user
       user.should_receive(:executing_tasks)
 
       get :user_tasks
@@ -127,7 +129,7 @@ before { controller.stub(:authorize!).and_return true }
 
     it 'should assings @viewed_tasks' do
       user = build :user
-      controller.stub(:current_user).and_return user 
+      controller.stub(:current_user).and_return user
       tasks = [build(:task), build(:task)]
       user.stub(:executing_tasks).and_return tasks
 

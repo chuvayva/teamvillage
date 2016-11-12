@@ -49,7 +49,7 @@ describe User do
     let(:user) { create :developer, projects: projects }
     
     before :each do
-        pdf_kit = mock('PDFKit')
+        pdf_kit = double('PDFKit')
         PDFKit.stub(:new).and_return pdf_kit
         pdf_kit.stub(:to_pdf)
         pdf_kit.stub(:stylesheets).and_return []

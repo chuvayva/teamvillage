@@ -6,7 +6,7 @@ describe UserMailer do
     let(:mail) { UserMailer.status(user) }
 
     before :each do
-        pdf_kit = mock('PDFKit')
+        pdf_kit = double('PDFKit')
         PDFKit.stub(:new).and_return pdf_kit
         pdf_kit.stub(:to_pdf)
         pdf_kit.stub(:stylesheets).and_return []
@@ -27,8 +27,9 @@ describe UserMailer do
     it 'renders name in the body' do 
         mail.body.encoded.should match(user.name) 
     end
+
     it 'add attachments' do 
-    	mail.attachments.should have(1).attachment
+    	mail.attachments.count.should eql(1)
     end
   end
 end
