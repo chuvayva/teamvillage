@@ -1,0 +1,39 @@
+#!/usr/bin/env ansible-playbook
+---
+
+- name: Vagrant single instance deployment
+  hosts: all
+  tasks:
+    - name: install apt packages
+      apt: pkg={{ item }} update_cache=yes cache_valid_time=3600
+      sudo: True
+      with_items:
+        - git-core
+        - curl
+        - zlib1g-dev
+        - build-essential
+        - libssl-dev
+        - libreadline-dev
+        - libyaml-dev
+        - libsqlite3-dev
+        - libxml2-dev
+        - libxslt1-dev
+        - libcurl4-openssl-dev
+        - python-software-properties
+        - libffi-dev
+
+    - name: Setup rbenv for ruby
+      git: >
+        repo=git://github.com/sstephenson/rbenv.git
+        dest=~/.rbenv
+        accept_hostkey=yes
+    - file: dest=~/.bash_profile state=touch
+    - lineinfile: dest=~/.bash_profile line='export PATH="$HOME/.rbenv/bin:$PATH"'
+    - lineinfile: dest=~/.bash_profile line='eval "$(rbenv init -)"'
+    - git: >
+        repo=git://github.com/sstephenson/ruby-build.git
+        dest=~/.rbenv/plugins/ruby-build
+        accept_hostkey=yes
+    - lineinfile: dest=~/.bash_profile line='export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"'
+    - command: rbenv install -v 2.2.3
+    - command: rbenv global 2.2.3

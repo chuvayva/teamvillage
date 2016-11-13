@@ -9,5 +9,8 @@ Vagrant.configure("2") do |config|
 
   config.ssh.forward_agent = true
 
-  config.vm.provision "shell", inline: "sudo -u vagrant mkdir /tmp/sockets"
+  #config.vm.provision "shell", inline: "sudo -u vagrant mkdir /tmp/sockets"
+  config.vm.provision 'ansible' do |ansible|
+    ansible.playbook = 'ansible/teamvillage_deploy.yml'
+  end
 end
