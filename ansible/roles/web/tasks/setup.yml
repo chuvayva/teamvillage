@@ -1,0 +1,40 @@
+- template: src=bash_profile.j2 dest=~/.bash_profile
+
+- apt_repository: repo={{ item }}
+  with_items:
+    - "ppa:chris-lea/node.js"
+    - "ppa:brightbox/ruby-ng"
+
+- name: install apt packages
+  apt: pkg={{ item }} update_cache=yes cache_valid_time=3600
+  with_items:
+    # key forwarding for rails user via socket permission
+    - acl
+    # for app
+    - ruby2.0
+    - nodejs
+    - nginx
+    - git
+    # for bundle
+    - make
+    - ruby2.0-dev
+    - libpq-dev
+    - g++
+
+- file: src=/usr/bin/{{ item }}2.0 dest=/usr/bin/{{ item }} state=link
+  with_items: [ruby, gem, irb]
+
+- gem: name=bundler state=present user_install=no
+
+
+- user: name=rails
+
+- file: path={{ home }} state=directory owner=rails group=rails
+
+- template: src=etc_init.d_unicorn.j2 dest=/etc/init.d/unicorn-{{ project }} owner=root group=root mode=0755
+  notify: restart unicorn
+
+- file: path=/tmp/sockets state=directory owner=rails group=rails
+
+- template: src=etc_nginx_unicorn.j2 dest=/etc/nginx/sites-available/default
+  notify: reload nginx

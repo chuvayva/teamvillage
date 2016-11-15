@@ -1,0 +1,8 @@
+- include: setup.yml
+  sudo: true
+
+- include: deploy.yml
+  tags:
+    - deploy
+  sudo: true
+  sudo_user: rails

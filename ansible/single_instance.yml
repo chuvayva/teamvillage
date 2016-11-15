@@ -18,7 +18,7 @@
     # pg
     - apt: pkg={{ item }} update_cache=yes cache_valid_time=3600
       sudo: true
-      with_items: 
+      with_items:
         - python-pycurl
         - python-psycopg2
     - apt_key: url=http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc

@@ -10,6 +10,6 @@ Vagrant.configure("2") do |config|
   config.ssh.forward_agent = true
 
   config.vm.provision 'ansible' do |ansible|
-    ansible.playbook = 'ansible/teamvillage_deploy.yml'
+    ansible.playbook = 'ansible/single_instance_roles.yml'
   end
 end

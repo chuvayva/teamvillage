@@ -1,0 +1,41 @@
+- name: SSH agent forwarding for rails user
+  acl: name={{ item }} etype=user entity=rails permissions=rwx state=present
+  with_items:
+    - "{{ ansible_env.SSH_AUTH_SOCK | dirname }}"
+    - "{{ ansible_env.SSH_AUTH_SOCK }}"
+  changed_when: false
+  sudo: true
+  sudo_user: root
+
+- name: Git checkout 
+  git: >
+    repo={{ clone_url }}
+    dest={{ home }}
+    accept_hostkey=yes
+    version={{ revision | default('master') }}
+  environment:
+    SSH_AUTH_SOCK: "{{ ansible_env.SSH_AUTH_SOCK }}"
+
+- name: Bundle install
+  command: bundle --deployment --without="test development" chdir={{ home }}
+  environment: rails_command_env
+  register: result
+  changed_when: "'Installing' in result.stdout"
+
+- file: path={{ home }}/{{ item }} state=directory owner=rails group=rails
+  with_items:
+    - shared/pids
+    - shared/log
+
+- name: Db migration
+  command: ./bin/rake db:migrate chdir={{ home }}
+  environment: rails_command_env
+  register: result
+  changed_when: result.stderr != ''
+
+- name: Assets precompile
+  command: ./bin/rake assets:precompile chdir={{ home }}
+  environment: rails_command_env
+  register: result
+  changed_when: result.stderr != ''
+

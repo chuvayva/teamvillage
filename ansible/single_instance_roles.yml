@@ -1,0 +1,20 @@
+#!/usr/bin/env ansible-playbook
+---
+
+- name: Vagrant single instance deployment
+
+  hosts: all
+
+  vars:
+    home: /var/www
+    database: tv_production
+    rails_env: production
+    rails_command_env:
+      RAILS_ENV: production
+    project: teamvillage
+    revision: master
+    clone_url: git@github.com:chuvayva/teamvillage.git
+
+  roles:
+    - db
+    - web
