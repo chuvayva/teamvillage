@@ -1,4 +1,4 @@
-module Roles
+module Modules::Roles
   ROLES = %w[admin]
 
 
