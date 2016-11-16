@@ -18,7 +18,8 @@
 
 - name: Bundle install
   command: bundle --deployment --without="test development" chdir={{ home }}
-  environment: rails_command_env
+  environment:
+    RAILS_ENV: '{{ env.rails_env }}'
   register: result
   changed_when: "'Installing' in result.stdout"
 
@@ -29,13 +30,15 @@
 
 - name: Db migration
   command: ./bin/rake db:migrate chdir={{ home }}
-  environment: rails_command_env
+  environment:
+    RAILS_ENV: '{{ env.rails_env }}'
   register: result
   changed_when: result.stderr != ''
 
 - name: Assets precompile
   command: ./bin/rake assets:precompile chdir={{ home }}
-  environment: rails_command_env
+  environment:
+    RAILS_ENV: '{{ env.rails_env }}'
   register: result
   changed_when: result.stderr != ''
 
