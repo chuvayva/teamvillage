@@ -1,20 +1,21 @@
 - apt: pkg={{ item }} update_cache=yes cache_valid_time=3600
-  sudo: true
+  sudo: yes
   with_items:
     - python-pycurl
     - python-psycopg2
 
 - apt_key: url=http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc
-  sudo: true
+  sudo: yes
 
 - apt_repository: repo='deb http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release }}-pgdg main'
-  sudo: true
+  sudo: yes
 
 - apt: pkg={{ item }} update_cache=yes cache_valid_time=3600
-  sudo: true
+  sudo: yes
   with_items:
     - postgresql
     - postgresql-contrib
+
 
 - postgresql_user: name=postgres password=postgres
   sudo: true
@@ -24,3 +25,16 @@
   sudo: true
   sudo_user: postgres
 
+
+- name: postgresql should listen on all ports
+  sudo: yes
+  lineinfile: dest="/etc/postgresql/{{ postgresql_version }}/main/postgresql.conf"
+              regexp="^listen_addresses"
+              line="listen_addresses = '*'" state=present
+  notify: restart postgresql
+
+- name: postgresql should allow access to host
+  sudo: yes
+  copy: dest="/etc/postgresql/{{ postgresql_version }}/main/pg_hba.conf"
+        src=pg_hba.conf
+  notify: restart postgresql

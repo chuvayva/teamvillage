@@ -8,7 +8,7 @@ USAGE="Usage: $0 <start|stop|restart|upgrade|rotate|force-stop>"
 USER="rails"
 APP_NAME="{{ project }}"
 APP_ROOT="{{ home }}"
-ENV="{{ env.rails_env }}"
+ENV="{{ env.RAILS_ENV }}"
 
 # environment settings
 CMD="cd $APP_ROOT && bundle exec unicorn -c config/unicorn.rb -E $ENV -D -l 0.0.0.0:3000"

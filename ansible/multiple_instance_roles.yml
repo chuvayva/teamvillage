@@ -1,0 +1,21 @@
+#!/usr/bin/env ansible-playbook
+
+---
+
+- name: << Vagrant common playbook >>
+  hosts: all
+  roles:
+    - common
+
+
+- name: << Vagrant db playbook >>
+  hosts: db
+  roles:
+    - db
+
+
+- name: << Vagrant web playbook >>
+  hosts: web
+  roles:
+    - web
+
