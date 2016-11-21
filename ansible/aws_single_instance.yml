@@ -1,0 +1,15 @@
+#!/usr/bin/env ansible-playbook
+
+---
+
+- name: << Vagrant common playbook >>
+  hosts: all
+  vars:
+    env:
+      RAILS_ENV: production
+      DATABASE_URL: "postgres://postgres:postgres@localhost:5432/{{ database }}"
+  roles:
+    - common
+    - db
+    - web
+
