@@ -20,7 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     web.vm.provision 'ansible' do |ansible|
       ansible.limit = 'all'
-      ansible.playbook = 'ansible/multiple_instance_roles.yml'
+      ansible.playbook = 'multiple_instance_roles.yml'
 
       ansible.groups = {
         'web' => ['web'],

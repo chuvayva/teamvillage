@@ -1,0 +1,8 @@
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:./bin"
+
+{% for key in env %}
+
+{{ key }}='{{ env[key] }}'
+
+{% endfor %}
+

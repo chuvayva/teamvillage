@@ -2,7 +2,7 @@
 
 ---
 
-- name: << Vagrant common playbook >>
+- name: << AWS playbook >>
   hosts: all
   vars:
     env:
