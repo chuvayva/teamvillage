@@ -1,0 +1,12 @@
+home: /var/www
+database: tv_production
+project: teamvillage
+revision: master
+clone_url: git@github.com:chuvayva/teamvillage.git
+postgresql_version: 9.6
+rails_env: production
+database_url: "postgres://postgres:postgres@192.168.0.5:5432/{{ database }}"
+
+env:
+  RAILS_ENV: production
+  DATABASE_URL: "postgres://postgres:postgres@192.168.0.5:5432/{{ database }}"

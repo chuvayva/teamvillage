@@ -1,0 +1,50 @@
+# inputs: prefix, az
+
+- name: create vpc
+  local_action:
+    module: ec2_vpc
+    cidr_block: 10.0.0.0/16
+    resource_tags: '{"Name":"{{ vpc_name }}"}'
+    subnets:
+      - cidr: 10.0.0.0/24
+        az: "{{ az_a }}"
+        resource_tags: '{"Name":"{{ public_subnet_name }}"}'
+      - cidr: 10.0.1.0/24
+        az: "{{ az_a }}"
+        resource_tags: '{"Name":"{{ private_subnet_1_name }}"}'
+      - cidr: 10.0.2.0/24
+        az: "{{ az_c }}"
+        resource_tags: '{"Name":"{{ private_subnet_2_name }}"}'
+    internet_gateway: yes
+    route_tables:
+      - subnets:
+          - 10.0.0.0/24
+        routes:
+          - dest: 0.0.0.0/0
+            gw: igw
+  register: vpc
+
+- set_fact:
+    vpc_id: "{{ vpc.vpc_id }}"
+
+- name: "get {{ public_subnet_name }} id"
+  command: "aws ec2 describe-subnets --filters Name=tag:Name,Values={{ public_subnet_name }} --region {{ region }} --query 'Subnets[0].SubnetId' --output text"
+  register: public_subnet_id
+
+- set_fact:
+    public_subnet_id: "{{ public_subnet_id.stdout }}"
+
+- name: "get {{ private_subnet_1_name }} id"
+  command: "aws ec2 describe-subnets --filters Name=tag:Name,Values={{ private_subnet_1_name }} --region {{ region }} --query 'Subnets[0].SubnetId' --output text"
+  register: private_subnet_1_id
+
+- set_fact:
+    private_subnet_1_id: "{{ private_subnet_1_id.stdout }}"
+
+- name: "get {{ private_subnet_2_name }} id"
+  command: "aws ec2 describe-subnets --filters Name=tag:Name,Values={{ private_subnet_2_name }} --region {{ region }} --query 'Subnets[0].SubnetId' --output text"
+  register: private_subnet_2_id
+
+- set_fact:
+    private_subnet_2_id: "{{ private_subnet_2_id.stdout }}"
+

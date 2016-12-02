@@ -1,0 +1,10 @@
+# input: key_name
+
+- name: create key pair
+  ec2_key:
+    name: "{{ key_name }}"
+  register: mykey
+
+- name: write to file
+  copy: content="{{ mykey.key.private_key }}" dest="~/.ssh/{{ key_name }}.pem" mode=0600
+  when: mykey.changed

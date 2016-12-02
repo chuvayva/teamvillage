@@ -1,0 +1,34 @@
+- name: creating the RDS subnet group
+  local_action:
+    module: rds_subnet_group
+    name: "{{ rds_subnet_group_name }}"
+    description: RDS subnet group
+    region: "{{ region }}"
+    subnets: 
+      - "{{ private_subnet_1_id }}"
+      - "{{ private_subnet_2_id }}"
+    state: present
+
+- name: Create Postgres RDS instance
+  local_action:
+    module: rds
+    command: create
+    instance_name: "{{ rds_instance_name }}"
+    region: "{{ region }}"
+    size: "{{ rds_size }}"
+    instance_type: "{{ rds_instance_type }}"
+    db_engine: "postgres"
+    subnet: "{{ rds_subnet_group_name }}"
+    multi_zone: "{{ multi_zone }}"
+    port: 5432
+    db_name: "{{ db_name }}"
+    username: "{{ db_username }}"
+    password: "{{ db_password }}"
+    vpc_security_groups: "{{ vpc_security_group }}"
+    backup_retention: 0                                 # to make creation faster without backup
+    wait: yes
+    wait_timeout: 600
+  register: rds
+
+- set_fact:
+    rds_fact: "{{ rds }}"

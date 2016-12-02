@@ -1,0 +1,10 @@
+topology_name: aws_ansible
+prefix: "{{ topology_name }}"
+region: us-east-1
+az_a: "{{ region }}a"
+az_c: "{{ region }}c"
+
+vpc_name: "{{ prefix }}_vpc"
+public_subnet_name: "{{ prefix }}_subnet_public"
+private_subnet_1_name: "{{ prefix }}_subnet_private_1"
+private_subnet_2_name: "{{ prefix }}_subnet_private_2"

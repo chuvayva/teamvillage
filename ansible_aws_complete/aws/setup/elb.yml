@@ -1,0 +1,27 @@
+- name: Ensure load balancer exists
+  local_action:
+    module: ec2_elb_lb
+    name: "{{ load_balancer_name }}"
+    security_group_ids: "{{ sg_elb.group_id }}"
+    state: present
+    region: "{{ region }}"
+    subnets: 
+      - "{{ public_subnet_id }}"
+    cross_az_load_balancing: "{{ elb_cross_az_load_balancing }}"
+    connection_draining_timeout: "{{ elb_connection_draining_timeout }}"
+    instance_ids:
+      - "{{ instance_id }}"
+    listeners:
+      - protocol: http
+        load_balancer_port: 80
+        instance_protocol: http
+        instance_port: 80
+    health_check:
+      ping_protocol: "{{ elb_ping_protocol }}"
+      ping_port: "{{ elb_ping_port }}"
+      response_timeout: "{{ elb_response_timeout }}"
+      interval: "{{ elb_interval }}"
+      unhealthy_threshold: "{{ elb_unhealthy_threshold }}"
+      healthy_threshold: "{{ elb_healthy_threshold }}"
+  register: web_elb
+

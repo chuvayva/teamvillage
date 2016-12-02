@@ -1,0 +1,78 @@
+#!/bin/sh
+
+set -e
+
+USAGE="Usage: $0 <start|stop|restart|upgrade|rotate|force-stop>"
+
+# app settings
+USER="rails"
+APP_NAME="{{ project }}"
+APP_ROOT="{{ home }}"
+ENV="{{ rails_env }}"
+
+# environment settings
+CMD="cd $APP_ROOT && bundle exec unicorn -c config/unicorn.rb -E $ENV -D -l 0.0.0.0:3000"
+PID="$APP_ROOT/shared/pids/unicorn.pid"
+OLD_PID="$PID.oldbin"
+
+# make sure the app exists
+cd $APP_ROOT || exit 1
+
+sig () {
+  test -s "$PID" && kill -$1 `cat $PID`
+}
+
+oldsig () {
+  test -s $OLD_PID && kill -$1 `cat $OLD_PID`
+}
+
+case $1 in
+  start)
+    sig 0 && echo >&2 "Already running" && exit 0
+    echo "Starting $APP_NAME"
+    su - $USER -c "$CMD"
+    ;;
+  stop)
+    echo "Stopping $APP_NAME"
+    sig QUIT && exit 0
+    echo >&2 "Not running"
+    ;;
+  force-stop)
+    echo "Force stopping $APP_NAME"
+    sig TERM && exit 0
+    echo >&2 "Not running"
+    ;;
+  restart|reload|upgrade)
+    if sig USR2 && sleep 10 && sig 0 && oldsig QUIT
+    then
+      n=$timeout
+      while test -s $old_pid && test $n -ge 0
+      do
+        printf '.' && sleep 1 && n=$(( $n - 1 ))
+      done
+
+      echo
+
+      if test $n -lt 0 && test -s $old_pid
+      then
+        echo >&2 "$old_pid still exists after $timeout seconds"
+        exit 1
+      fi
+      exit 0
+    fi
+    echo >&2 "Couldn't upgrade, starting instead"
+    cmd
+    ;;
+  *)
+    echo >&2 "Usage: $0 <start|stop|restart>"
+    exit 1
+    ;;
+  rotate)
+    sig USR1 && echo rotated logs OK && exit 0
+    echo >&2 "Couldn't rotate logs" && exit 1
+    ;;
+  *)
+    echo >&2 $USAGE
+    exit 1
+    ;;
+esac

@@ -1,0 +1,69 @@
+# inputs: region, vpc_cidr, prefix
+
+#- name: get vpc id
+  #command: "aws ec2 describe-vpcs --filters Name=tag:Name,Values={{ prefix }}_vpc
+           #--query 'Vpcs[0].VpcId' --output text"
+  #register: vpc_id
+
+- name: create load balancer group
+  ec2_group:
+    name: "{{ sg_loadbalancer_name }}"
+    vpc_id: "{{ vpc_id }}"
+    description: HTTP, HTTPS
+    rules:
+      # allow http access from anywhere
+      - proto: tcp
+        from_port: 80
+        to_port: 80
+        cidr_ip: 0.0.0.0/0
+      # allow https access from anywhere
+      - proto: tcp
+        from_port: 443
+        to_port: 443
+        cidr_ip: 0.0.0.0/0
+  register: sg_elb
+
+- name: create web security group
+  ec2_group:
+    name: "{{ sg_webserver_name }}"
+    description: HTTP, SSH
+    vpc_id: "{{ vpc_id }}"
+    rules:
+      # allow http access from load balancer
+      - proto: tcp
+        from_port: 80
+        to_port: 80
+        group_name: "{{ sg_loadbalancer_name }}"
+      - proto: tcp
+        from_port: 22
+        to_port: 22
+        cidr_ip: 0.0.0.0/0
+    rules_egress:
+      - proto: all
+        cidr_ip: 0.0.0.0/0
+  register: sb_web
+
+- name: create database security group
+  ec2_group:
+    name: "{{ sg_database_name }}"
+    description: PostgreSQL
+    vpc_id: "{{ vpc_id }}"
+    rules:
+      # allow pg access from webserver group
+      - proto: tcp
+        from_port: 5432
+        to_port: 5432
+        group_name: "{{ sg_webserver_name }}"
+  register: sg_database
+
+#- name: create sg_ansible rules
+  #ec2_group:
+    #region: "{{ region }}"
+    #vpc_id: "{{ vpc_id }}"
+    #name: "{{ prefix }}_sg_ansible"
+    #description: security group for ansible
+    #rules:
+      #- proto: tcp
+        #from_port: 22
+        #to_port: 22
+        #cidr_ip: "{{ allowed_ip }}"

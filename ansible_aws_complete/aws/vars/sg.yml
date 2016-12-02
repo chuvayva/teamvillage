@@ -1,0 +1,3 @@
+sg_loadbalancer_name: "{{ prefix }}_sg_lb"
+sg_webserver_name: "{{ prefix }}_sg_webserver"
+sg_database_name: "{{ prefix }}_sg_database"

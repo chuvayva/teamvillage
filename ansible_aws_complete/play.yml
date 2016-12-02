@@ -1,0 +1,44 @@
+#!/usr/bin/env ansible-playbook
+
+---
+
+- name: Setup full AWS stack
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  environment:
+    AWS_ACCESS_KEY_ID: AKIAJJTUUWIGC3J7O5VA
+    AWS_SECRET_ACCESS_KEY: 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
+    AWS_REGION: us-east-1
+
+  vars_files:
+    - aws/vars/vpc.yml
+    - aws/vars/sg.yml
+    - aws/vars/rds.yml
+    - aws/vars/key_pair.yml
+    - aws/vars/ec2.yml
+    - aws/vars/elb.yml
+
+  tasks:
+    - include: aws/setup/vpc.yml
+    - include: aws/setup/sg.yml
+    - include: aws/setup/rds.yml
+    - include: aws/setup/key_pair.yml
+    - include: aws/setup/ec2.yml
+    - include: aws/setup/elb.yml
+
+
+- name: Setup Rails App
+  hosts: tag_type_web
+  environment:
+    AWS_ACCESS_KEY_ID: AKIAJJTUUWIGC3J7O5VA
+    AWS_SECRET_ACCESS_KEY: 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
+    AWS_REGION: us-east-1
+  vars_files:
+    - aws/vars/vpc.yml
+    - aws/vars/rds.yml
+
+  roles:
+    - common
+    - web
+

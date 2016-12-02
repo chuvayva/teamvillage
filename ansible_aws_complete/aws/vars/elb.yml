@@ -1,0 +1,10 @@
+load_balancer_name: "{{ topology_name | replace('_', '-') }}-webserver-elb"
+elb_cross_az_load_balancing: yes
+elb_ping_protocol: tcp
+elb_ping_port: 80
+elb_response_timeout: 5
+elb_interval: 30
+elb_unhealthy_threshold: 2
+elb_healthy_threshold: 10
+elb_connection_draining_timeout: 60
+

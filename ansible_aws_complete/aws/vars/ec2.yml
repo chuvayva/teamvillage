@@ -1,0 +1,12 @@
+linux_distribution: ubuntu
+ubuntu_release: trusty
+ami_store: ebs
+virutalization_type: hvm
+cpu_architecture: amd64
+
+web_instance_type: t2.micro
+web_instances_number: 1
+web_instance_tags:
+  Name: Web instance
+  type: web
+
