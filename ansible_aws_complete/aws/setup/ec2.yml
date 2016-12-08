@@ -35,14 +35,14 @@
     instance_id: "{{ instance_info.id }}"
 
 - name: Wait for SSH to come up
-  local_action: 
-    module: wait_for 
+  local_action:
+    module: wait_for
     host: "{{ instance_public_ip }}"
-    port: 22 
+    port: 22
     state: started
 
 - name: Create SSH Group to login dynamically to EC2 Instance(s)
   add_host: 
-    hostname: "{{ web.instances[0].public_ip }}"
+    hostname: "{{ instance_public_ip }}"
     groupname: tag_type_web
 

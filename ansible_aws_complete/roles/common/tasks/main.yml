@@ -1,16 +1,7 @@
-- local_action:
-    module: rds
-    command: facts
-    instance_name: "{{ rds_instance_name }}"
-  register: rds
-
-- set_fact:
-    database_url: "postgres://postgres:postgres@{{ rds.instance.endpoint }}/{{ db_name }}"
-
 - name: Time Synchronization
   apt: pkg=ntp update_cache=yes cache_valid_time=3600
-  sudo: yes
+  become: yes
 
 - template: src=etc_environment.j2 dest=/etc/environment
-  sudo: yes
+  become: yes
 

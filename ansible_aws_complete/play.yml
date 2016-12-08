@@ -34,11 +34,12 @@
     AWS_ACCESS_KEY_ID: AKIAJJTUUWIGC3J7O5VA
     AWS_SECRET_ACCESS_KEY: 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
     AWS_REGION: us-east-1
-  vars_files:
-    - aws/vars/vpc.yml
-    - aws/vars/rds.yml
+
+  pre_tasks:
+    - include: setup_database_url.yml
+      when: database_url is undefined
 
   roles:
-    - common
-    - web
+    - role: common
+    - role: web
 

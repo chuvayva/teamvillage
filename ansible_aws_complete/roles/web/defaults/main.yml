@@ -1,0 +1,4 @@
+home: /var/www
+revision: master
+clone_url: git@github.com:chuvayva/teamvillage.git
+

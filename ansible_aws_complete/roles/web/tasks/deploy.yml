@@ -4,8 +4,8 @@
     - "{{ ansible_env.SSH_AUTH_SOCK | dirname }}"
     - "{{ ansible_env.SSH_AUTH_SOCK }}"
   changed_when: false
-  sudo: true
-  sudo_user: root
+  become: true
+  become_user: root
 
 - name: Git checkout 
   git: >
@@ -18,7 +18,6 @@
 
 - name: Bundle install
   command: "bundle --deployment --without='test development' chdir={{ home }}"
-  #environment: "{{ env }}"
   environment:
     RAILS_ENV: "{{ rails_env }}"
   register: result
@@ -31,7 +30,6 @@
 
 - name: Db migration
   command: ./bin/rake db:migrate chdir={{ home }}
-  #environment: "{{ env }}"
   environment:
     RAILS_ENV: "{{ rails_env }}"
     DATABASE_URL: "{{ database_url }}"
@@ -40,7 +38,6 @@
 
 - name: Assets precompile
   command: ./bin/rake assets:precompile chdir={{ home }}
-  #environment: "{{ env }}"
   environment:
     RAILS_ENV: "{{ rails_env }}"
     DATABASE_URL: "{{ database_url }}"

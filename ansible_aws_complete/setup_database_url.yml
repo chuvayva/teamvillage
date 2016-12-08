@@ -1,0 +1,8 @@
+- local_action:
+    module: rds
+    command: facts
+    instance_name: "{{ rds_instance_name }}"
+  register: rds
+
+- set_fact:
+    database_url: "postgres://postgres:postgres@{{ rds.instance.endpoint }}/{{ database }}"

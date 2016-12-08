@@ -1,7 +1,7 @@
 - name: restart unicorn
   service: name=unicorn-{{ project }} state=restarted
-  sudo: true
+  become: yes
 
 - name: reload nginx
   service: name=nginx state=reloaded
-  sudo: true
+  become: yes

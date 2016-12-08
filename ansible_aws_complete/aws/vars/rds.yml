@@ -1,5 +1,5 @@
-rds_instance_name: "{{ topology_name | replace('_', '-') }}"
-db_name: "{{ topology_name }}"
+#rds_instance_name: "{{ project | replace('_', '-') }}"
+#database: "{{ topology_name }}"
 rds_instance_type: db.t2.micro
 rds_size: 100
 db_username: postgres

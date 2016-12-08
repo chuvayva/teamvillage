@@ -21,7 +21,7 @@
     subnet: "{{ rds_subnet_group_name }}"
     multi_zone: "{{ multi_zone }}"
     port: 5432
-    db_name: "{{ db_name }}"
+    db_name: "{{ database }}"
     username: "{{ db_username }}"
     password: "{{ db_password }}"
     vpc_security_groups: "{{ vpc_security_group }}"
