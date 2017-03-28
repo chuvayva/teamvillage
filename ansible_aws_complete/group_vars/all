@@ -1,7 +1,14 @@
+# common
 project: teamvillage
 rails_env: production
 
-database: tv_production
+# rds
 rds_instance_name: "{{ project | replace('_', '-') }}"
+database: tv_production
 # or
 #database_url: "postgres://postgres:postgres@192.168.0.5:5432/{{ database }}"
+
+# web role
+home: /var/www
+revision: master
+clone_url: git@github.com:chuvayva/teamvillage.git
