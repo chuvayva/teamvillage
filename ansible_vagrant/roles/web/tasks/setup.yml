@@ -18,6 +18,7 @@
     - ruby2.0-dev
     - libpq-dev
     - g++
+    - zlib1g-dev # for nokogiri
 
 - file: src=/usr/bin/{{ item }}2.0 dest=/usr/bin/{{ item }} state=link
   with_items: [ruby, gem, irb]
