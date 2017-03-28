@@ -6,7 +6,6 @@ class Project < ActiveRecord::Base
 	scope :executed_by, ->(user) { joins(tasks: :executer).where('users.id = ?', user).group('projects.id') }
 
 	validates :name, presence: true, uniqueness: true
-  attr_accessible :name, :owner_id
 
   def progress
   	self.tasks.average(:persentage)

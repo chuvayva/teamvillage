@@ -9,10 +9,6 @@ class User < ActiveRecord::Base
 
   has_many :projects, foreign_key: :owner_id
 
-
-  attr_accessible :name, :roles, :blocked, :email, :password, :password_confirmation, :remember_me
-
-
   def executing_tasks(project = nil)
     tasks = Task.where('executer_id = :user', user: self)
     tasks = tasks.where('project_id = :project',project: project) if project

@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.12'
+ruby '2.3.3'
+gem 'rails', '5.0.0.1'
+
 gem 'jquery-rails'
 gem 'devise'
 gem 'cancan'
@@ -38,8 +40,8 @@ end
 gem 'pg', group: [:development, :production]
 
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+  gem 'sass-rails'
+  gem 'coffee-rails'
   gem 'uglifier', '>= 1.0.3'
 end
 
